@@ -24,7 +24,7 @@ export class HotelService {
   constructor(private http: HttpClient) { }
 
   getHoteis(): Observable<Hotel[]> {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNzU3Nzg4NTI4LCJleHAiOjE3NTc3OTU3MjgsImlhdCI6MTc1Nzc4ODUyOCwiaXNzIjoiTWluaGFBUEkiLCJhdWQiOiJNZXVzQ2xpZW50ZXMifQ.so_9YJWQP3GwUZf6Wk7dGF56oxq71-8kCrSXNr64Hgk';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNzU3Nzk0NDMyLCJleHAiOjE3NTc4MDE2MzIsImlhdCI6MTc1Nzc5NDQzMiwiaXNzIjoiTWluaGFBUEkiLCJhdWQiOiJNZXVzQ2xpZW50ZXMifQ.XAIHkcb-HSBVcpQqGuOYgA0mSC6Fk_YnTXbZ444FJEE';
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get<Hotel[]>(this.apiUrl, { headers });
