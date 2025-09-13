@@ -1,0 +1,13 @@
+<div *ngIf="erro" class="erro">
+  {{ erro }}
+</div>
+
+<ul *ngIf="hoteis.length > 0; else vazio">
+  <li *ngFor="let hotel of hoteis">
+    <strong>{{ hotel.nome }}</strong> - {{ hotel.endereco }}
+  </li>
+</ul>
+
+<ng-template #vazio>
+  <p>Nenhum hotel encontrado.</p>
+</ng-template>
