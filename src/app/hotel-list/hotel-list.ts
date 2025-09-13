@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // necessário para *ngIf e *ngFor
+import { HttpClientModule } from '@angular/common/http'; // necessário para HttpClient
 import { HotelService, Hotel } from '../services/hotel.service';
 
 @Component({
   selector: 'app-hotel-list',
-  templateUrl: './hotel-list.component.html',
-  styleUrls: ['./hotel-list.component.css']
+  standalone: true, // indica que é standalone
+  imports: [CommonModule, HttpClientModule], // adiciona módulos que o componente precisa
+  templateUrl: './hotel-list.html',
+  styleUrls: ['./hotel-list.css']
 })
 export class HotelListComponent implements OnInit {
   hoteis: Hotel[] = [];
