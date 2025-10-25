@@ -18,15 +18,23 @@ export interface Hotel {
 })
 export class HotelService {
 
-  private apiUrl = `${environment.apiUrl}/Hotel/BuscarHoteis`;
-
+  private apiUrl = `${environment.apiUrl}/Hotel`;
 
   constructor(private http: HttpClient) { }
 
+  
   getHoteis(): Observable<Hotel[]> {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNzU3Nzk0NDMyLCJleHAiOjE3NTc4MDE2MzIsImlhdCI6MTc1Nzc5NDQzMiwiaXNzIjoiTWluaGFBUEkiLCJhdWQiOiJNZXVzQ2xpZW50ZXMifQ.XAIHkcb-HSBVcpQqGuOYgA0mSC6Fk_YnTXbZ444FJEE';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNzU4NjYxMzU3LCJleHAiOjE3NTg2Njg1NTcsImlhdCI6MTc1ODY2MTM1NywiaXNzIjoiTWluaGFBUEkiLCJhdWQiOiJNZXVzQ2xpZW50ZXMifQ.h1AaCYDPQXlwaPZghQoHM-GuSjIlcuyezgGKtMkGN6U';
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get<Hotel[]>(this.apiUrl, { headers });
+    return this.http.get<Hotel[]>(`${this.apiUrl}/BuscarHoteis`, { headers });
+  }
+
+ 
+  createHotel(hotel: Omit<Hotel, 'id'>): Observable<Hotel> {
+    const token = 'SEU_TOKEN_AQUI';
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<Hotel>(`${this.apiUrl}/CriarHotel`, hotel, { headers });
   }
 }

@@ -1,1 +1,13 @@
-<p>hotel-form works!</p>
+<div class="container">
+  <h2>Cadastrar Novo Hotel</h2>
+
+  <form (ngSubmit)="onSubmit()" #hotelForm="ngForm">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" [(ngModel)]="hotel.nome" name="nome" required />
+
+    <label for="endereco">Endereço:</label>
+    <input type="text" id="endereco" [(ngModel)]="hotel.endereco" name="endereco" required />
+
+    <button type="submit">Salvar</button>
+  </form>
+</div>
