@@ -1,0 +1,30 @@
+<div class="form-container">
+  <h2>Cadastrar Hotel</h2>
+
+  <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nome">Nome:</label>
+      <input id="nome" type="text" formControlName="nome" />
+    </div>
+
+    <div>
+      <label for="endereco">Endereço:</label>
+      <input id="endereco" type="text" formControlName="endereco" />
+    </div>
+
+    <div>
+      <label for="contatoId">Contato ID:</label>
+      <input id="contatoId" type="text" formControlName="contatoId" />
+    </div>
+
+    <div>
+      <label for="configuracaoHotelId">Configuração Hotel ID:</label>
+      <input id="configuracaoHotelId" type="text" formControlName="configuracaoHotelId" />
+    </div>
+
+    <button type="submit" [disabled]="hotelForm.invalid">Salvar</button>
+  </form>
+
+  <p *ngIf="sucesso" style="color: green;">{{ sucesso }}</p>
+  <p *ngIf="erro" style="color: red;">{{ erro }}</p>
+</div>

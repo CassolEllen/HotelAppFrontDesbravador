@@ -13,6 +13,22 @@ export interface Hotel {
   configuracaoHotel: { idioma: string; id: string } | null;
 }
 
+export interface CreateHotelDTO {
+  nome: string;
+  endereco: string;
+  contato: {
+    telefone: string;
+    whatsapp: string;
+    email: string;
+  };
+  configuracaoHotel: {
+    quantidadeQuartos: number;
+    quantidadeAndares: number;
+    possuiPiscina: boolean;
+  };
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,19 +38,21 @@ export class HotelService {
 
   constructor(private http: HttpClient) { }
 
-  
-  getHoteis(): Observable<Hotel[]> {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNzU4NjYxMzU3LCJleHAiOjE3NTg2Njg1NTcsImlhdCI6MTc1ODY2MTM1NywiaXNzIjoiTWluaGFBUEkiLCJhdWQiOiJNZXVzQ2xpZW50ZXMifQ.h1AaCYDPQXlwaPZghQoHM-GuSjIlcuyezgGKtMkGN6U';
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  }
 
+  getHoteis(): Observable<Hotel[]> {
+    const headers = this.getAuthHeaders();
     return this.http.get<Hotel[]>(`${this.apiUrl}/BuscarHoteis`, { headers });
   }
 
- 
-  createHotel(hotel: Omit<Hotel, 'id'>): Observable<Hotel> {
-    const token = 'SEU_TOKEN_AQUI';
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
+  createHotel(hotel: CreateHotelDTO): Observable<Hotel> {
+    const headers = this.getAuthHeaders();
     return this.http.post<Hotel>(`${this.apiUrl}/CriarHotel`, hotel, { headers });
   }
 }

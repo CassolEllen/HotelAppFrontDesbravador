@@ -1,0 +1,19 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  <form (ngSubmit)="onLogin()">
+    <div>
+      <label for="email">Email:</label>
+      <input type="text" id="email" [(ngModel)]="email" name="email" required>
+    </div>
+
+    <div>
+      <label for="password">Senha:</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required>
+    </div>
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+</div>

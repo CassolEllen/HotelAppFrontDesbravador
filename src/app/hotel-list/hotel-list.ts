@@ -1,32 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // necessário para *ngIf e *ngFor
-import { HttpClientModule } from '@angular/common/http'; // necessário para HttpClient
-import { HotelService, Hotel } from '../services/hotel.service';
+import { Component } from '@angular/core';
+import { HotelService } from '../services/hotel.service';
+import { RouterModule } from '@angular/router'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-hotel-list',
-  standalone: true, // indica que é standalone
-  imports: [CommonModule, HttpClientModule], // adiciona módulos que o componente precisa
+  standalone: true,       
+  imports: [CommonModule, RouterModule], 
   templateUrl: './hotel-list.html',
   styleUrls: ['./hotel-list.css']
 })
-export class HotelListComponent implements OnInit {
-  hoteis: Hotel[] = [];
+export class HotelListComponent {
+  hoteis: any[] = [];
   erro: string | null = null;
 
-  constructor(private hotelService: HotelService) {}
-
-  ngOnInit(): void {
+  constructor(private hotelService: HotelService) {
     this.carregarHoteis();
   }
 
-  carregarHoteis(): void {
+  carregarHoteis() {
     this.hotelService.getHoteis().subscribe({
-      next: (dados) => this.hoteis = dados,
-      error: (err) => {
-        console.error(err);
-        this.erro = 'Erro ao carregar hotéis';
-      }
+      next: (data) => this.hoteis = data,
+      error: (err) => this.erro = 'Erro ao carregar hotéis'
     });
   }
 }

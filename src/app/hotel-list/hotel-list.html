@@ -2,6 +2,8 @@
   {{ erro }}
 </div>
 
+<button [routerLink]="'/hoteis/novo'">Cadastrar novo hotel</button>
+
 <ul *ngIf="hoteis.length > 0; else vazio">
   <li *ngFor="let hotel of hoteis">
     <strong>{{ hotel.nome }}</strong> - {{ hotel.endereco }}
@@ -11,3 +13,6 @@
 <ng-template #vazio>
   <p>Nenhum hotel encontrado.</p>
 </ng-template>
+
+
+
