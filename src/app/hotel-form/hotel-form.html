@@ -1,105 +1,92 @@
-<form (ngSubmit)="onSubmit()" #hotelForm="ngForm">
+<form (ngSubmit)="onSubmit()" #hotelForm="ngForm" class="hotel-form">
   <h2>Cadastro de Hotel</h2>
 
-  <div>
-    <label>Nome:</label>
-    <input
-      type="text"
-      [(ngModel)]="hotel.nome"
-      name="nome"
-      required
-      placeholder="Ex: Hotel das Flores"
-    />
-  </div>
+  
+  <div *ngIf="successMessage" class="alert success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert error">{{ errorMessage }}</div>
 
-  <div>
-    <label>Endereço:</label>
-    <input
-      type="text"
-      [(ngModel)]="hotel.endereco"
-      name="endereco"
-      required
-      placeholder="Ex: Rua Exemplo, 123"
-    />
-  </div>
+  
+  <label>Nome:</label>
+  <input
+    type="text"
+    [(ngModel)]="hotel.nome"
+    name="nome"
+    required
+    placeholder="Ex: Hotel das Flores"
+  />
+
+  <label>Endereço:</label>
+  <input
+    type="text"
+    [(ngModel)]="hotel.endereco"
+    name="endereco"
+    required
+    placeholder="Ex: Rua Exemplo, 123"
+  />
 
   <hr />
 
   <h3>Contato</h3>
 
-  <div>
-    <label>Telefone:</label>
-    <input
-      type="text"
-      [(ngModel)]="hotel.contato.telefone"
-      name="telefone"
-      required
-      placeholder="(51) 99999-9999"
-    />
-  </div>
+  <label>Telefone:</label>
+  <input
+    type="text"
+    [(ngModel)]="hotel.contato.telefone"
+    name="telefone"
+    required
+    placeholder="(51) 99999-9999"
+  />
 
-  <div>
-    <label>WhatsApp:</label>
-    <input
-      type="text"
-      [(ngModel)]="hotel.contato.whatsapp"
-      name="whatsapp"
-      required
-      placeholder="(51) 99999-9999"
-    />
-  </div>
+  <label>WhatsApp:</label>
+  <input
+    type="text"
+    [(ngModel)]="hotel.contato.whatsapp"
+    name="whatsapp"
+    required
+    placeholder="(51) 99999-9999"
+  />
 
-  <div>
-    <label>Email:</label>
-    <input
-      type="email"
-      [(ngModel)]="hotel.contato.email"
-      name="email"
-      required
-      placeholder="contato@hotel.com"
-    />
-  </div>
+  <label>Email:</label>
+  <input
+    type="email"
+    [(ngModel)]="hotel.contato.email"
+    name="email"
+    required
+    placeholder="contato@hotel.com"
+  />
 
   <hr />
 
   <h3>Configuração do Hotel</h3>
 
-  <div>
-    <label>Quantidade de Quartos:</label>
+  <label>Quantidade de Quartos:</label>
+  <input
+    type="number"
+    [(ngModel)]="hotel.configuracaoHotel.quantidadeQuartos"
+    name="quantidadeQuartos"
+    required
+    min="1"
+  />
+
+  <label>Quantidade de Andares:</label>
+  <input
+    type="number"
+    [(ngModel)]="hotel.configuracaoHotel.quantidadeAndares"
+    name="quantidadeAndares"
+    required
+    min="1"
+  />
+
+  <label>
     <input
-      type="number"
-      [(ngModel)]="hotel.configuracaoHotel.quantidadeQuartos"
-      name="quantidadeQuartos"
-      required
-      min="1"
-      placeholder="Ex: 50"
+      type="checkbox"
+      [(ngModel)]="hotel.configuracaoHotel.possuiPiscina"
+      name="possuiPiscina"
     />
-  </div>
+    Possui Piscina
+  </label>
 
-  <div>
-    <label>Quantidade de Andares:</label>
-    <input
-      type="number"
-      [(ngModel)]="hotel.configuracaoHotel.quantidadeAndares"
-      name="quantidadeAndares"
-      required
-      min="1"
-      placeholder="Ex: 5"
-    />
-  </div>
-
-  <div>
-    <label>
-      <input
-        type="checkbox"
-        [(ngModel)]="hotel.configuracaoHotel.possuiPiscina"
-        name="possuiPiscina"
-      />
-      Possui Piscina
-    </label>
-  </div>
-
-  <hr />
-
-  <button type="submit" [disabled]="hotelForm.invalid">Salvar</button>
+  <button type="submit" [disabled]="hotelForm.invalid || loading">
+    {{ loading ? 'Salvando...' : 'Salvar' }}
+  </button>
 </form>

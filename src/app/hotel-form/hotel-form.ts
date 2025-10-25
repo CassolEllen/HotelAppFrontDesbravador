@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HotelService, CreateHotelDTO } from '../services/hotel.service';
+import { HotelService } from '../services/hotel.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -8,10 +8,11 @@ import { CommonModule } from '@angular/common';
   selector: 'app-hotel-form',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './hotel-form.html'
+  templateUrl: './hotel-form.html',
+  styleUrls: ['./hotel-form.css']
 })
 export class HotelFormComponent {
-  hotel: CreateHotelDTO = {
+  hotel = {
     nome: '',
     endereco: '',
     contato: {
@@ -26,16 +27,31 @@ export class HotelFormComponent {
     }
   };
 
+  loading = false;
+  successMessage = '';
+  errorMessage = '';
+
   constructor(private hotelService: HotelService, private router: Router) {}
 
   onSubmit(): void {
+    this.successMessage = '';
+    this.errorMessage = '';
+    this.loading = true;
+
     this.hotelService.createHotel(this.hotel).subscribe({
       next: (res) => {
-        console.log('Hotel cadastrado com sucesso:', res);
-        this.router.navigate(['/hoteis']);
+        this.loading = false;
+        this.successMessage = '🏨 Hotel cadastrado com sucesso!';
+        console.log('Hotel cadastrado:', res);
+
+        // Redireciona após 2 segundos
+        setTimeout(() => this.router.navigate(['/hoteis']), 2000);
       },
       error: (err) => {
+        this.loading = false;
         console.error('Erro ao cadastrar hotel:', err);
+        this.errorMessage =
+          '❌ Erro ao cadastrar o hotel. Verifique os dados e tente novamente.';
       }
     });
   }
