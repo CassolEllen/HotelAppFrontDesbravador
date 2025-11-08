@@ -1,0 +1,47 @@
+<h2>{{ hotel.id ? 'Editar Hotel' : 'Novo Hotel' }}</h2>
+
+<form (ngSubmit)="salvar()" #hotelForm="ngForm">
+  <div>
+    <label>Nome:</label>
+    <input type="text" [(ngModel)]="hotel.nome" name="nome" required />
+  </div>
+
+  <div>
+    <label>Endereço:</label>
+    <input type="text" [(ngModel)]="hotel.endereco" name="endereco" required />
+  </div>
+
+  <div>
+    <label>Telefone:</label>
+    <input type="text" [(ngModel)]="hotel.contato!.telefone" name="telefone" />
+  </div>
+
+  <div>
+    <label>WhatsApp:</label>
+    <input type="text" [(ngModel)]="hotel.contato!.whatsapp" name="whatsapp" />
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="hotel.contato!.email" name="email" />
+  </div>
+
+  <div>
+    <label>Qtd Quartos:</label>
+    <input type="number" [(ngModel)]="hotel.configuracaoHotel!.quantidadeQuartos" name="quantidadeQuartos" />
+  </div>
+
+  <div>
+    <label>Qtd Andares:</label>
+    <input type="number" [(ngModel)]="hotel.configuracaoHotel!.quantidadeAndares" name="quantidadeAndares" />
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" [(ngModel)]="hotel.configuracaoHotel!.possuiPiscina" name="possuiPiscina" />
+      Possui Piscina
+    </label>
+  </div>
+
+  <button type="submit">Salvar</button>
+</form>

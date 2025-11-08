@@ -1,18 +1,34 @@
-<div *ngIf="erro" class="erro">
-  {{ erro }}
+<h2>🏨 Lista de Hotéis</h2>
+
+<!-- Botão de novo hotel -->
+<div class="top-bar">
+  <button class="btn-add" (click)="novoHotel()">➕ Cadastrar Novo Hotel</button>
 </div>
 
-<button [routerLink]="'/hoteis/novo'">Cadastrar novo hotel</button>
-
-<ul *ngIf="hoteis.length > 0; else vazio">
-  <li *ngFor="let hotel of hoteis">
-    <strong>{{ hotel.nome }}</strong> - {{ hotel.endereco }}
-  </li>
-</ul>
-
-<ng-template #vazio>
-  <p>Nenhum hotel encontrado.</p>
-</ng-template>
-
-
-
+<table class="hotel-table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Endereço</th>
+      <th>Telefone</th>
+      <th>WhatsApp</th>
+      <th>Email</th>
+      <th>Quartos</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hotel of hoteis">
+      <td>{{ hotel.nome }}</td>
+      <td>{{ hotel.endereco }}</td>
+      <td>{{ hotel.contato.telefone }}</td>
+      <td>{{ hotel.contato.whatsapp }}</td>
+      <td>{{ hotel.contato.email }}</td>
+      <td>{{ hotel.configuracaoHotel.quantidadeQuartos }}</td>
+      <td>
+        <button class="btn-edit" (click)="editarHotel(hotel.id)">✏️ Editar</button>
+        <button (click)="deleteHotel(hotel.id)" class="btn-delete">🗑️ Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HotelForm } from './hotel-form';
+import { HotelFormComponent } from './hotel-form';
 
-describe('HotelForm', () => {
-  let component: HotelForm;
-  let fixture: ComponentFixture<HotelForm>;
+describe('HotelFormComponent', () => {
+  let component: HotelFormComponent;
+  let fixture: ComponentFixture<HotelFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HotelForm]
+      imports: [HotelFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HotelForm);
+    fixture = TestBed.createComponent(HotelFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

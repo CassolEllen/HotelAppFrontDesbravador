@@ -1,31 +1,45 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './login.html'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
 })
 export class LoginComponent {
-  email = ''; 
+  username = '';
   password = '';
-  errorMessage: string | null = null;
+  loading = false;
+  errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onLogin(): void {
-  this.authService.login(this.email, this.password).subscribe({
-    next: (token) => {
-      localStorage.setItem('token', token); 
-      this.errorMessage = null;
-      this.router.navigate(['/hoteis']);
-    },
-    error: () => {
-      this.errorMessage = 'Usuário ou senha incorretos';
-    }
-  });
-}}
+  onLogin() {
+    this.errorMessage = '';
+    this.loading = true;
+
+    this.authService.login(this.username, this.password).subscribe({
+      next: (res: string) => {
+        this.loading = false;
+
+        if (res) {
+          // O backend retorna o token diretamente como string
+          localStorage.setItem('authToken', res);
+          this.router.navigate(['/dashboard']); // redireciona após login
+        } else {
+          this.errorMessage = 'Credenciais inválidas.';
+        }
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Erro ao fazer login:', err);
+        this.errorMessage = 'Falha no login. Verifique suas credenciais.';
+      }
+    });
+  }
+}

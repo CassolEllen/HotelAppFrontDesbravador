@@ -1,0 +1,43 @@
+.dashboard-container {
+  text-align: center;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.card-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 250px;
+  height: 160px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+  margin-top: 40px;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.card p {
+  color: #777;
+  font-size: 0.9rem;
+}

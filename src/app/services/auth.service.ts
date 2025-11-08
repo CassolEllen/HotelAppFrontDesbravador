@@ -10,11 +10,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<string> {
-  const body = { email, password };
-  return this.http.post(`${this.apiUrl}/Login`, body, { responseType: 'text' });
-}
-
+  login(username: string, password: string): Observable<string> {
+    const body = { username, password }; 
+    return this.http.post(`${this.apiUrl}/Login`, body, { responseType: 'text' });
+  }
 
   getToken(): string | null {
     return localStorage.getItem('token');
