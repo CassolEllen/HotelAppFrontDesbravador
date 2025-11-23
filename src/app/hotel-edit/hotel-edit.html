@@ -1,36 +1,47 @@
-<h2>Editar Hotel</h2>
+<form (ngSubmit)="salvar()" #form="ngForm">
 
-<form (ngSubmit)="salvar()" #hotelForm="ngForm">
-  <div>
-    <label>Nome:</label>
-    <input type="text" [(ngModel)]="hotel.nome" name="nome" required />
-  </div>
+  <label>Nome</label>
+  <input
+    type="text"
+    [(ngModel)]="hotel.nome"
+    name="nome"
+    required
+  />
 
-  <div>
-    <label>Endereço:</label>
-    <input type="text" [(ngModel)]="hotel.endereco" name="endereco" required />
-  </div>
+  <label>Endereço</label>
+  <input
+    type="text"
+    [(ngModel)]="hotel.endereco"
+    name="endereco"
+    required
+  />
 
-  <div>
-    <label>Email:</label>
-    <input type="email" [(ngModel)]="hotel.email" name="email" required />
-  </div>
+  <label>Email</label>
+  <input
+    type="email"
+    [(ngModel)]="hotel.contato.email"
+    name="email"
+    required
+  />
 
-  <div>
-    <label>WhatsApp:</label>
-    <input type="text" [(ngModel)]="hotel.whatsapp" name="whatsapp" required />
-  </div>
+  <label>Whatsapp</label>
+  <input
+    type="text"
+    [(ngModel)]="hotel.contato.whatsapp"
+    name="whatsapp"
+    required
+  />
 
-  <div>
-    <label>Idioma:</label>
-    <select [(ngModel)]="hotel.idioma" name="idioma" required>
-      <option value="">Selecione</option>
-      <option value="pt-BR">Português (BR)</option>
-      <option value="en-US">Inglês</option>
-      <option value="es-ES">Espanhol</option>
-      <option value="fr-FR">Francês</option>
-    </select>
-  </div>
+  <label>Idioma</label>
+  <select
+    [(ngModel)]="hotel.configuracaoHotel.idioma"
+    name="idioma"
+    required
+  >
+    <option value="pt">Português</option>
+    <option value="en">Inglês</option>
+  </select>
 
   <button type="submit">Salvar</button>
+
 </form>

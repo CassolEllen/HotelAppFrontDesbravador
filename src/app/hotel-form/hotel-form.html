@@ -1,9 +1,4 @@
-<form (ngSubmit)="onSubmit()" #hotelForm="ngForm" class="hotel-form">
-
-  <h2>{{ titulo }}</h2>
-
-  <div *ngIf="successMessage" class="alert success">{{ successMessage }}</div>
-  <div *ngIf="errorMessage" class="alert error">{{ errorMessage }}</div>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
 
   <label>Nome:</label>
   <input type="text" [(ngModel)]="hotel.nome" name="nome" required />
@@ -12,21 +7,17 @@
   <input type="text" [(ngModel)]="hotel.endereco" name="endereco" required />
 
   <label>Email:</label>
-  <input type="email" [(ngModel)]="hotel.email" name="email" required />
+  <input type="email" [(ngModel)]="hotel.contato.email" name="email" required />
 
-  <label>WhatsApp:</label>
-  <input type="text" [(ngModel)]="hotel.whatsapp" name="whatsapp" required />
+  <label>Whatsapp:</label>
+  <input type="text" [(ngModel)]="hotel.contato.whatsapp" name="whatsapp" required />
 
   <label>Idioma:</label>
-  <select [(ngModel)]="hotel.idioma" name="idioma" required>
-    <option value="">Selecione</option>
-    <option value="pt-BR">Português (BR)</option>
-    <option value="en-US">Inglês</option>
-    <option value="es-ES">Espanhol</option>
-    <option value="fr-FR">Francês</option>
+  <select [(ngModel)]="hotel.configuracaoHotel.idioma" name="idioma" required>
+    <option value="PT">Português</option>
+    <option value="EN">Inglês</option>
+    <option value="ES">Espanhol</option>
   </select>
 
-  <button type="submit" [disabled]="hotelForm.invalid || loading">
-    {{ loading ? 'Salvando...' : 'Salvar' }}
-  </button>
+  <button type="submit">Salvar</button>
 </form>

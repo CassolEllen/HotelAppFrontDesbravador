@@ -13,14 +13,20 @@ import { Hotel } from '../models/hotel-model';
   styleUrls: ['./hotel-edit.css']
 })
 export class HotelEditComponent {
+
   hotel: Hotel = {
-    id: '',
-    nome: '',
-    endereco: '',
+  id: '',
+  nome: '',
+  endereco: '',
+  contato: {
     email: '',
-    whatsapp: '',
+    whatsapp: ''
+  },
+  configuracaoHotel: {
     idioma: ''
-  };
+  }
+};
+
 
   constructor(
     private route: ActivatedRoute,
@@ -40,7 +46,9 @@ export class HotelEditComponent {
   }
 
   salvar() {
-    this.hotelService.updateHotel(this.hotel.id!, this.hotel).subscribe({
+    if (!this.hotel.id) return;
+
+    this.hotelService.updateHotel(this.hotel.id, this.hotel).subscribe({
       next: () => this.router.navigate(['/hoteis']),
       error: (err) => console.error('Erro ao atualizar hotel:', err)
     });
