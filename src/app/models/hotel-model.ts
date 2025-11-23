@@ -17,6 +17,8 @@ export interface Hotel {
   id?: string;
   nome?: string;
   endereco?: string;
-  contato?: Contato | null;
-  configuracaoHotel?: ConfiguracaoHotel | null;
+  email?: string;
+  whatsapp?: string;
+  idioma?: string;
 }
+

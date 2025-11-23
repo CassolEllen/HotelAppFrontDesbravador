@@ -1,6 +1,5 @@
 <h2>🏨 Lista de Hotéis</h2>
 
-<!-- Botão de novo hotel -->
 <div class="top-bar">
   <button class="btn-add" (click)="novoHotel()">➕ Cadastrar Novo Hotel</button>
 </div>
@@ -10,24 +9,23 @@
     <tr>
       <th>Nome</th>
       <th>Endereço</th>
-      <th>Telefone</th>
-      <th>WhatsApp</th>
       <th>Email</th>
-      <th>Quartos</th>
+      <th>WhatsApp</th>
+      <th>Idioma</th>
       <th>Ações</th>
     </tr>
   </thead>
+
   <tbody>
     <tr *ngFor="let hotel of hoteis">
       <td>{{ hotel.nome }}</td>
       <td>{{ hotel.endereco }}</td>
-      <td>{{ hotel.contato.telefone }}</td>
-      <td>{{ hotel.contato.whatsapp }}</td>
-      <td>{{ hotel.contato.email }}</td>
-      <td>{{ hotel.configuracaoHotel.quantidadeQuartos }}</td>
+      <td>{{ hotel.email }}</td>
+      <td>{{ hotel.whatsapp }}</td>
+      <td>{{ hotel.idioma }}</td>
       <td>
         <button class="btn-edit" (click)="editarHotel(hotel.id)">✏️ Editar</button>
-        <button (click)="deleteHotel(hotel.id)" class="btn-delete">🗑️ Excluir</button>
+        <button class="btn-delete" (click)="deleteHotel(hotel.id)">🗑️ Excluir</button>
       </td>
     </tr>
   </tbody>

@@ -1,0 +1,46 @@
+<div class="form-container">
+  <h2>Cadastro de Usuário</h2>
+
+  <form (ngSubmit)="salvar()">
+    <label>Nome:</label>
+    <input [(ngModel)]="usuario.nome" name="nome" placeholder="Ex: João Silva" />
+
+    <label>Senha:</label>
+    <input [(ngModel)]="usuario.senha" name="senha" placeholder="Digite a senha" type="password" />
+
+    <hr />
+
+    <h3>Contato</h3>
+    <label>Email:</label>
+    <input [(ngModel)]="usuario.contato.email" name="email" placeholder="email@exemplo.com" />
+
+    <label>WhatsApp:</label>
+    <input [(ngModel)]="usuario.contato.telefone" name="whatsapp" placeholder="(51) 99999-9999" />
+
+    <hr />
+
+    <h3>Vinculação</h3>
+    <label>ID do Hotel:</label>
+    <input [(ngModel)]="usuario.hotel.id" name="hotelId" placeholder="Digite o ID do hotel" />
+
+    <hr />
+
+    <h3>Permissões</h3>
+    <label>Papel:</label>
+    <select [(ngModel)]="usuario.papel" name="papel">
+      <option value="">Selecione</option>
+      <option value="Admin">Admin</option>
+      <option value="Funcionario">Funcionário</option>
+    </select>
+
+    <label>Tipo de Usuário:</label>
+    <select [(ngModel)]="usuario.tipoUsuario" name="tipoUsuario">
+      <option value="">Selecione</option>
+      <option value="Gerente">Gerente</option>
+      <option value="Recepcionista">Recepcionista</option>
+      <option value="ServicosGerais">Serviços Gerais</option>
+    </select>
+
+    <button type="submit">Salvar</button>
+  </form>
+</div>

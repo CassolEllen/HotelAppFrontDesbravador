@@ -17,8 +17,9 @@ export class HotelEditComponent {
     id: '',
     nome: '',
     endereco: '',
-    contato: { telefone: '', whatsapp: '', email: '' },
-    configuracaoHotel: { quantidadeQuartos: 0, quantidadeAndares: 0, possuiPiscina: false }
+    email: '',
+    whatsapp: '',
+    idioma: ''
   };
 
   constructor(
@@ -29,6 +30,7 @@ export class HotelEditComponent {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+
     if (id) {
       this.hotelService.getHotelById(id).subscribe({
         next: (data) => (this.hotel = data),
@@ -38,16 +40,9 @@ export class HotelEditComponent {
   }
 
   salvar() {
-    if (this.hotel.id) {
-      this.hotelService.updateHotel(this.hotel.id, this.hotel).subscribe({
-        next: () => this.router.navigate(['/hoteis']),
-        error: (err) => console.error('Erro ao atualizar hotel:', err)
-      });
-    } else {
-      this.hotelService.createHotel(this.hotel as any).subscribe({
-        next: () => this.router.navigate(['/hoteis']),
-        error: (err) => console.error('Erro ao criar hotel:', err)
-      });
-    }
+    this.hotelService.updateHotel(this.hotel.id!, this.hotel).subscribe({
+      next: () => this.router.navigate(['/hoteis']),
+      error: (err) => console.error('Erro ao atualizar hotel:', err)
+    });
   }
 }

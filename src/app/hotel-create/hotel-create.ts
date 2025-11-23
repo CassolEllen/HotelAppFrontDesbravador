@@ -23,8 +23,9 @@ export class HotelCreateComponent {
     this.hotelForm = this.fb.group({
       nome: ['', Validators.required],
       endereco: ['', Validators.required],
-      contatoId: ['', Validators.required],
-      configuracaoHotelId: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      whatsapp: ['', Validators.required],
+      idioma: ['', Validators.required]
     });
   }
 

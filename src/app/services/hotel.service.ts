@@ -24,9 +24,10 @@ export class HotelService {
   }
 
   getHotelById(id: string): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.get(`${this.apiUrl}/BuscarHotelPorId/${id}`, { headers });
-  }
+  const headers = this.getAuthHeaders();
+  return this.http.post(`${this.apiUrl}/BuscarHotelPorId/${id}`, {}, { headers });
+}
+
 
   createHotel(hotel: any): Observable<any> {
     const headers = this.getAuthHeaders();

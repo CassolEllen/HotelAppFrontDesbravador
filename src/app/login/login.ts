@@ -24,13 +24,13 @@ export class LoginComponent {
     this.loading = true;
 
     this.authService.login(this.username, this.password).subscribe({
-      next: (res: string) => {
+      next: (res) => {
         this.loading = false;
 
-        if (res) {
-          // O backend retorna o token diretamente como string
-          localStorage.setItem('authToken', res);
-          this.router.navigate(['/dashboard']); // redireciona após login
+        if (res && res.bearerToken) {
+          // Salva o token JWT
+          this.authService.salvarToken(res.bearerToken);
+          this.router.navigate(['/dashboard']);
         } else {
           this.errorMessage = 'Credenciais inválidas.';
         }

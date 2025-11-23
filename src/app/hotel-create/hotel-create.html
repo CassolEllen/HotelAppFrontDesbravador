@@ -13,13 +13,24 @@
     </div>
 
     <div>
-      <label for="contatoId">Contato ID:</label>
-      <input id="contatoId" type="text" formControlName="contatoId" />
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" />
     </div>
 
     <div>
-      <label for="configuracaoHotelId">Configuração Hotel ID:</label>
-      <input id="configuracaoHotelId" type="text" formControlName="configuracaoHotelId" />
+      <label for="whatsapp">WhatsApp:</label>
+      <input id="whatsapp" type="text" formControlName="whatsapp" />
+    </div>
+
+    <div>
+      <label for="idioma">Idioma:</label>
+      <select id="idioma" formControlName="idioma">
+        <option value="">Selecione</option>
+        <option value="pt-BR">Português (BR)</option>
+        <option value="en-US">Inglês</option>
+        <option value="es-ES">Espanhol</option>
+        <option value="fr-FR">Francês</option>
+      </select>
     </div>
 
     <button type="submit" [disabled]="hotelForm.invalid">Salvar</button>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HotelService } from '../services/hotel.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HotelService } from '../services/hotel.service';
 
 @Component({
   selector: 'app-hotel-form',
@@ -12,26 +12,20 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./hotel-form.css']
 })
 export class HotelFormComponent implements OnInit {
+
   hotel = {
     id: '',
     nome: '',
     endereco: '',
-    contato: {
-      telefone: '',
-      whatsapp: '',
-      email: ''
-    },
-    configuracaoHotel: {
-      quantidadeQuartos: 0,
-      quantidadeAndares: 0,
-      possuiPiscina: false
-    }
+    email: '',
+    whatsapp: '',
+    idioma: ''
   };
 
   loading = false;
   successMessage = '';
   errorMessage = '';
-  titulo = 'Cadastrar Novo Hotel';
+  titulo = 'Cadastrar Hotel';
 
   constructor(
     private hotelService: HotelService,
@@ -41,13 +35,22 @@ export class HotelFormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+
     if (id) {
       this.titulo = 'Editar Hotel';
       this.loading = true;
 
       this.hotelService.getHotelById(id).subscribe({
         next: (res) => {
-          this.hotel = res;
+          this.hotel = {
+            id: res.id,
+            nome: res.nome ?? '',
+            endereco: res.endereco ?? '',
+            email: res.email ?? '',
+            whatsapp: res.whatsapp ?? '',
+            idioma: res.idioma ?? ''
+          };
+
           this.loading = false;
         },
         error: (err) => {
@@ -64,35 +67,28 @@ export class HotelFormComponent implements OnInit {
     this.errorMessage = '';
     this.loading = true;
 
-    
     if (this.hotel.id) {
       this.hotelService.updateHotel(this.hotel.id, this.hotel).subscribe({
-        next: (res) => {
+        next: () => {
           this.loading = false;
-          this.successMessage = '✅ Hotel atualizado com sucesso!';
-          console.log('Hotel atualizado:', res);
-          setTimeout(() => this.router.navigate(['/hoteis']), 2000);
+          this.successMessage = 'Hotel atualizado com sucesso!';
+          setTimeout(() => this.router.navigate(['/hoteis']), 1500);
         },
-        error: (err) => {
+        error: () => {
           this.loading = false;
-          console.error('Erro ao atualizar hotel:', err);
-          this.errorMessage =
-            '❌ Erro ao atualizar o hotel. Verifique os dados e tente novamente.';
+          this.errorMessage = 'Erro ao atualizar hotel.';
         }
       });
     } else {
       this.hotelService.createHotel(this.hotel).subscribe({
-        next: (res) => {
+        next: () => {
           this.loading = false;
-          this.successMessage = '🏨 Hotel cadastrado com sucesso!';
-          console.log('Hotel cadastrado:', res);
-          setTimeout(() => this.router.navigate(['/hoteis']), 2000);
+          this.successMessage = 'Hotel cadastrado com sucesso!';
+          setTimeout(() => this.router.navigate(['/hoteis']), 1500);
         },
-        error: (err) => {
+        error: () => {
           this.loading = false;
-          console.error('Erro ao cadastrar hotel:', err);
-          this.errorMessage =
-            '❌ Erro ao cadastrar o hotel. Verifique os dados e tente novamente.';
+          this.errorMessage = 'Erro ao cadastrar hotel.';
         }
       });
     }
