@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HotelService } from '../services/hotel.service';
+import { HotelService } from '../services/hotel-service';
 
 @Component({
   selector: 'app-hotel-list',

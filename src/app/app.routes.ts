@@ -6,6 +6,9 @@ import { DashboardComponent } from './dashboard/dashboard';
 import { authGuard } from './guards/auth.guard';
 import { UsuarioForm } from './usuario/usuario-form';
 import { UsuarioList } from './usuario/usuario-list';
+import { FormBuilder } from '../../node_modules/@angular/forms/index';
+import { FormulariosListComponent } from './formularios-list/formularios-list';
+import { FormularioService } from './services/formulario-service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,5 +21,8 @@ export const routes: Routes = [
   { path: 'usuarios', component: UsuarioList },
   { path: 'usuarios/novo', component: UsuarioForm },
   { path: 'usuarios/editar/:id', component: UsuarioForm },
-  { path: '', redirectTo: 'usuarios', pathMatch: 'full' }
+  { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
+  { path: 'formularios', component: FormulariosListComponent },
+  { path: 'formularios/novo', component: FormularioService },
+  { path: 'formularios/editar/:id', component: FormularioService }
 ];

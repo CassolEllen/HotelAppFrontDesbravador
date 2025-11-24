@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HotelService } from '../services/hotel.service';
+import { HotelService } from '../services/hotel-service';
 import { Hotel } from '../models/hotel-model';
 
 @Component({

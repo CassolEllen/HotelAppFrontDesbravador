@@ -1,0 +1,33 @@
+<div class="lista-container">
+    <h2>📋 Lista de Formulários</h2>
+  
+    <button class="novo-btn" (click)="novo()">+ Novo Formulário</button>
+  
+    <div *ngIf="carregando">Carregando...</div>
+  
+    <table *ngIf="!carregando && formularios.length > 0">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Hotel</th>
+          <th>Perguntas</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let f of formularios">
+          <td>{{ f.titulo }}</td>
+          <td>{{ f.nomeHotel }}</td>
+          <td>{{ f.perguntas.length }}</td>
+          <td>
+            <button (click)="editar(f.id)">Editar</button>
+            <button class="del" (click)="deletar(f.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="!carregando && formularios.length === 0">Nenhum formulário cadastrado.</p>
+  </div>
+  
