@@ -15,30 +15,21 @@
     <input [(ngModel)]="usuario.contato.email" name="email" placeholder="email@exemplo.com" />
 
     <label>WhatsApp:</label>
-    <input [(ngModel)]="usuario.contato.telefone" name="whatsapp" placeholder="(51) 99999-9999" />
-
-    <hr />
-
-    <h3>Vinculação</h3>
-    <label>ID do Hotel:</label>
-    <input [(ngModel)]="usuario.hotel.id" name="hotelId" placeholder="Digite o ID do hotel" />
+    <input [(ngModel)]="usuario.contato.whatsapp" name="whatsapp" placeholder="(51) 99999-9999" />
 
     <hr />
 
     <h3>Permissões</h3>
     <label>Papel:</label>
     <select [(ngModel)]="usuario.papel" name="papel">
-      <option value="">Selecione</option>
-      <option value="Admin">Admin</option>
-      <option value="Funcionario">Funcionário</option>
+      <option [ngValue]="0">Gerente</option>
+      <option [ngValue]="1">Funcionário</option>
     </select>
-
+  
     <label>Tipo de Usuário:</label>
     <select [(ngModel)]="usuario.tipoUsuario" name="tipoUsuario">
-      <option value="">Selecione</option>
-      <option value="Gerente">Gerente</option>
-      <option value="Recepcionista">Recepcionista</option>
-      <option value="ServicosGerais">Serviços Gerais</option>
+      <option [ngValue]="0">Admin</option>
+      <option [ngValue]="1">User</option>
     </select>
 
     <button type="submit">Salvar</button>

@@ -40,30 +40,30 @@ import { Router, RouterModule } from '@angular/router';
 export class UsuarioList implements OnInit {
   usuarios: any[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {} // 👈 Adicionamos o Router aqui
+  constructor(private http: HttpClient, private router: Router) {} 
 
   ngOnInit() {
     this.carregarUsuarios();
   }
 
   carregarUsuarios() {
-    this.http.get('http://localhost:5119/api/Usuario/BuscarUsuarios').subscribe({
+    this.http.get('https://localhost:7092/api/Usuario/BuscarUsuarios').subscribe({
       next: (dados: any) => (this.usuarios = dados),
       error: (err) => console.error('Erro ao carregar usuários:', err),
     });
   }
 
   criarUsuario() {
-    this.router.navigate(['/usuarios/novo']); // 👈 Navega para a tela de cadastro
+    this.router.navigate(['/usuarios/novo']); 
   }
 
   editarUsuario(usuario: any) {
-    this.router.navigate(['/usuarios/editar', usuario.id]); // 👈 Preparado para a tela de edição futura
+    this.router.navigate(['/usuarios/editar', usuario.id]); 
   }
 
   deletarUsuario(id: string) {
     if (confirm('Tem certeza que deseja excluir este usuário?')) {
-      this.http.delete(`http://localhost:5119/api/Usuario/DeletarUsuario/${id}`).subscribe({
+      this.http.delete(`https://localhost:7092/api/Usuario/DeletarUsuario/${id}`).subscribe({
         next: () => {
           alert('Usuário excluído com sucesso!');
           this.carregarUsuarios();

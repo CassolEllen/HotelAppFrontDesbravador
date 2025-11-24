@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';   // <-- IMPORTANTE
+import { FormsModule } from '@angular/forms';   
 import { Router } from '@angular/router';
 import { HotelService } from '../services/hotel.service';
 import { Hotel } from '../models/hotel-model';
@@ -8,7 +8,7 @@ import { Hotel } from '../models/hotel-model';
 @Component({
   selector: 'app-hotel-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],   // <-- ADICIONE AQUI
+  imports: [CommonModule, FormsModule],   
   templateUrl: './hotel-form.html',
   styleUrls: ['./hotel-form.css']
 })

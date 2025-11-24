@@ -14,25 +14,21 @@ import { Router } from '@angular/router';
 export class UsuarioForm {
   usuario = {
     nome: '',
+    contato: {
+      email: '',
+      whatsapp: ''
+    },
     senha: '',
     papel: 'Funcionario', 
     tipoUsuario: 'Funcionario',
-    contato: {
-      email: '',
-      telefone: ''
-    },
-    hotel: {
-      id: '',  
-      nome: ''
-    }
   };
 
   constructor(private http: HttpClient, private router: Router) {}
 
   salvar() {
-    console.log('Enviando para API:', this.usuario); // debug útil
+    console.log('Enviando para API:', this.usuario); 
 
-    this.http.post('http://localhost:5119/api/Usuario/CriarUsuario', this.usuario).subscribe({
+    this.http.post('https://localhost:7092/api/Usuario/CriarUsuario', this.usuario).subscribe({
       next: () => {
         alert('Usuário cadastrado com sucesso!');
         this.router.navigate(['/usuarios']);
