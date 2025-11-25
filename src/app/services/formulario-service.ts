@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { QuestionarioDto } from '../models/questionario-model';
 
 @Injectable({ providedIn: 'root' })
 export class FormularioService {
@@ -17,8 +18,14 @@ export class FormularioService {
     return this.http.post(`${this.apiUrl}/BuscarQuestionarioPorId/${id}`, {});
   }
 
-  criar(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/CriarQuestionario`, data);
+  criarQuestionario(payload: QuestionarioDto) {
+    const token = localStorage.getItem("token");
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.post(`${this.apiUrl}/CriarQuestionario`, payload, { headers });
   }
 
   atualizar(id: string, data: any): Observable<any> {

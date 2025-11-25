@@ -9,6 +9,7 @@ import { UsuarioList } from './usuario/usuario-list';
 import { FormBuilder } from '../../node_modules/@angular/forms/index';
 import { FormulariosListComponent } from './formularios-list/formularios-list';
 import { FormularioService } from './services/formulario-service';
+import { FormulariosCreate } from './formularios-create/formularios-create';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,6 +24,6 @@ export const routes: Routes = [
   { path: 'usuarios/editar/:id', component: UsuarioForm },
   { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
   { path: 'formularios', component: FormulariosListComponent },
-  { path: 'formularios/novo', component: FormularioService },
+  { path: 'formularios/novo', component: FormulariosCreate },
   { path: 'formularios/editar/:id', component: FormularioService }
 ];
