@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="salvar()">
+
+  <h2>Cadastrar Hóspede</h2>
+
+  <div class="card">
+    <label>Nome do Hóspede *</label>
+    <input type="text" formControlName="nome" placeholder="Ex: João da Silva">
+  </div>
+
+  <div class="card">
+    <label>Quarto *</label>
+    <input type="text" formControlName="quarto" placeholder="Ex: 205-A">
+  </div>
+
+  <!-- CONFIGURAÇÃO DO HÓSPEDE -->
+  <div formGroupName="configuracaoHospede" class="card">
+    <h3>Configuração</h3>
+
+    <label>Idioma *</label>
+    <select formControlName="idioma">
+      <option value="pt-BR">Português (BR)</option>
+      <option value="en-US">Inglês (US)</option>
+      <option value="es-ES">Espanhol</option>
+    </select>
+  </div>
+
+  <!-- CONTATO -->
+  <div formGroupName="contato" class="card">
+    <h3>Contato</h3>
+
+    <label>Email *</label>
+    <input type="email" formControlName="email" placeholder="email@hotel.com">
+
+    <label>Whatsapp *</label>
+    <input type="text" formControlName="whatsapp" placeholder="+55 11 90000-0000">
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Salvar</button>
+
+</form>

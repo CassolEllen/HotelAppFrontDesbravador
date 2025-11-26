@@ -10,6 +10,8 @@ import { FormBuilder } from '../../node_modules/@angular/forms/index';
 import { FormulariosListComponent } from './formularios-list/formularios-list';
 import { FormularioService } from './services/formulario-service';
 import { FormulariosCreate } from './formularios-create/formularios-create';
+import { HospedeComponent } from './hospedes-create/hospedes-create';
+import { HospedesListComponent } from './hospedes-list/hospedes-list';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,5 +27,8 @@ export const routes: Routes = [
   { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
   { path: 'formularios', component: FormulariosListComponent },
   { path: 'formularios/novo', component: FormulariosCreate },
-  { path: 'formularios/editar/:id', component: FormularioService }
+  { path: 'formularios/editar/:id', component: FormularioService },
+  { path: 'hospedes', component: HospedesListComponent},
+  { path: 'hospedes-create', component: HospedeComponent}
+
 ];

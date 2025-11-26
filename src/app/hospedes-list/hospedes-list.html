@@ -1,0 +1,38 @@
+<h2>📋 Lista de Hóspedes</h2>
+
+<button routerLink="/hospede/create">+ Novo Hóspede</button>
+<br><br>
+
+<div *ngIf="carregando">⏳ Carregando hóspedes...</div>
+
+<table *ngIf="!carregando && hospedes.length > 0" border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Hotel</th>
+      <th>Quarto</th>
+      <th>Idioma</th>
+      <th>Email</th>
+      <th>WhatsApp</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let h of hospedes">
+      <td>{{ h.nome }}</td>
+      <td>{{ h.nomeHotel }}</td>
+      <td>{{ h.quarto }}</td>
+      <td>{{ h.idioma }}</td>
+      <td>{{ h.email }}</td>
+      <td>{{ h.whatsapp }}</td>
+      <td>
+        <button [routerLink]="['/hospede/editar', h.id]">✏ Editar</button>
+        <button (click)="excluir(h.id)">🗑 Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!carregando && hospedes.length === 0">
+  🔍 Nenhum hóspede encontrado.
+</div>
