@@ -1,0 +1,76 @@
+/* Container principal */
+.hotel-create-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f6f6f6;
+  border-radius: 10px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Título */
+.hotel-create-container h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Cada grupo do formulário */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Inputs e Selects */
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #1976d2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+}
+
+/* Botão salvar */
+.btn-save {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-save:hover {
+  background-color: #1565c0;
+  transform: scale(1.03);
+}
+
+/* Mensagens */
+.success-message {
+  color: #2e7d32;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.error-message {
+  color: #c62828;
+  margin-top: 10px;
+  font-weight: 500;
+}

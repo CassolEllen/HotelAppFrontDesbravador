@@ -9,4 +9,5 @@ export interface Hotel {
   configuracaoHotel: {
     idioma: string;
   };
+    questionarioSelecionadoId?: string | null;
 }

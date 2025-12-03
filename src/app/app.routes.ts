@@ -1,16 +1,17 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login';
 import { HotelListComponent } from './hotel-list/hotel-list';
-import { HotelFormComponent } from './hotel-form/hotel-form';
 import { DashboardComponent } from './dashboard/dashboard';
 import { authGuard } from './guards/auth.guard';
 import { UsuarioForm } from './usuario/usuario-form';
 import { UsuarioList } from './usuario/usuario-list';
-import { FormBuilder } from '../../node_modules/@angular/forms/index';
 import { FormulariosListComponent } from './formularios-list/formularios-list';
 import { FormularioService } from './services/formulario-service';
 import { FormulariosCreate } from './formularios-create/formularios-create';
-import { HospedeComponent } from './hospedes-create/hospedes-create';
+import { HotelCreateComponent } from './hotel-create/hotel-create';
+import { HotelEditComponent } from './hotel-edit/hotel-edit';
+import { HospedeEditComponent } from './hospedes-edit/hospedes-edit';
+import { HospedeCreateComponent } from './hospedes-create/hospedes-create';
 import { HospedesListComponent } from './hospedes-list/hospedes-list';
 
 export const routes: Routes = [
@@ -18,8 +19,8 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'hoteis', component: HotelListComponent, canActivate: [authGuard] },
-  { path: 'hoteis/novo', component: HotelFormComponent, canActivate: [authGuard] },
-  { path: 'hoteis/editar/:id', component: HotelFormComponent, canActivate: [authGuard] },
+  { path: 'hoteis/novo', component: HotelCreateComponent, canActivate: [authGuard] },
+  { path: 'hoteis/editar/:id', component: HotelEditComponent, canActivate: [authGuard] },
   { path: 'usuarios', loadComponent: () => import('./usuario/usuario-list').then(m => m.UsuarioList) },
   { path: 'usuarios', component: UsuarioList },
   { path: 'usuarios/novo', component: UsuarioForm },
@@ -28,7 +29,9 @@ export const routes: Routes = [
   { path: 'formularios', component: FormulariosListComponent },
   { path: 'formularios/novo', component: FormulariosCreate },
   { path: 'formularios/editar/:id', component: FormularioService },
-  { path: 'hospedes', component: HospedesListComponent},
-  { path: 'hospedes-create', component: HospedeComponent}
+  { path: 'hospedes', component: HospedesListComponent },
+  { path: 'hospedes/novo', component: HospedeCreateComponent },
+  { path: 'hospedes/editar/:id', component: HospedeEditComponent }
+
 
 ];

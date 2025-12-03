@@ -1,28 +1,85 @@
-.hotel-edit-container,
-.hotel-list-container {
-  max-width: 700px;
+/* Container principal */
+.hotel-edit-container {
+  max-width: 650px;
   margin: 2rem auto;
-  padding: 1rem;
-  background: #f6f6f6;
-  border-radius: 8px;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
 }
 
+/* Título */
+h2 {
+  font-family: "Segoe UI", sans-serif;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Formulário */
 .form-group {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1rem;
 }
 
-button {
-  margin-right: 0.5rem;
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #444;
 }
 
-.hotel-table {
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #1976d2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.25);
+}
+
+/* Botões */
+.btn-save {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+  margin-top: 10px;
 }
 
-.hotel-table th,
-.hotel-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+.btn-save:hover {
+  background-color: #1565c0;
+  transform: scale(1.02);
+}
+
+.btn-back {
+  background-color: #9e9e9e;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-back:hover {
+  background-color: #757575;
+  transform: scale(1.02);
 }

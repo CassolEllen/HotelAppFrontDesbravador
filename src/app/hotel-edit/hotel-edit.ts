@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+// components/hotel-edit.component.ts
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from '../services/hotel-service';
+import { FormularioService } from '../services/formulario-service';
 import { Hotel } from '../models/hotel-model';
 
 @Component({
@@ -10,39 +12,56 @@ import { Hotel } from '../models/hotel-model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './hotel-edit.html',
-  styleUrls: ['./hotel-edit.css']
 })
-export class HotelEditComponent {
+export class HotelEditComponent implements OnInit {
 
   hotel: Hotel = {
-  id: '',
-  nome: '',
-  endereco: '',
-  contato: {
-    email: '',
-    whatsapp: ''
-  },
-  configuracaoHotel: {
-    idioma: ''
-  }
-};
+    id: '',
+    nome: '',
+    endereco: '',
+    contato: { email: '', whatsapp: '' },
+    configuracaoHotel: { idioma: 'pt-BR' },
+    questionarioSelecionadoId: null
+  };
 
+  questionarios: any[] = [];
+  loading = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private questionarioService: FormularioService
   ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-
     if (id) {
-      this.hotelService.getHotelById(id).subscribe({
-        next: (data) => (this.hotel = data),
-        error: (err) => console.error('Erro ao carregar hotel:', err)
-      });
+      this.carregarHotel(id);
+      this.carregarQuestionarios();
     }
+  }
+
+carregarHotel(id: string) {
+  this.loading = true;
+
+  this.hotelService.getHotelById(id).subscribe({
+    next: (res) => {
+      this.hotel = res;
+      this.loading = false;
+    },
+    error: () => {
+      this.loading = false;
+    }
+  });
+}
+
+
+  carregarQuestionarios() {
+    this.questionarioService.listar().subscribe({
+      next: (res) => this.questionarios = res,
+      error: (err) => console.error('Erro ao carregar questionarios:', err)
+    });
   }
 
   salvar() {

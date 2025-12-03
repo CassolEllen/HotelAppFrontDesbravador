@@ -1,3 +1,4 @@
+// components/hotel-create.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -21,17 +22,23 @@ export class HotelCreateComponent {
     private router: Router
   ) {
     this.hotelForm = this.fb.group({
-      nome: ['', Validators.required],
-      endereco: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      whatsapp: ['', Validators.required],
-      idioma: ['', Validators.required]
+      nome: ['', [Validators.required, Validators.minLength(2)]],
+      endereco: ['', [Validators.required, Validators.minLength(3)]],
+      contato: this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+        whatsapp: ['', Validators.required]
+      }),
+      configuracaoHotel: this.fb.group({
+        idioma: ['pt-BR', Validators.required]
+      }),
+      questionarioSelecionadoId: [null]
     });
   }
 
   onSubmit(): void {
     if (this.hotelForm.invalid) return;
 
+    // envia no formato HotelDTo (contato + configuracao)
     this.hotelService.createHotel(this.hotelForm.value).subscribe({
       next: () => {
         this.sucesso = 'Hotel cadastrado com sucesso!';

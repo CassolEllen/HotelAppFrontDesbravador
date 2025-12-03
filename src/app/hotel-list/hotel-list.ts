@@ -1,6 +1,7 @@
+// components/hotel-list.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { HotelService } from '../services/hotel-service';
 
 @Component({
@@ -22,11 +23,11 @@ export class HotelListComponent implements OnInit {
   carregarHoteis(): void {
     this.loading = true;
     this.hotelService.getHoteis().subscribe({
-      next: (res: any) => {
+      next: (res) => {
         this.hoteis = res;
         this.loading = false;
       },
-      error: (err: any) => {
+      error: (err) => {
         console.error('Erro ao carregar hotéis:', err);
         this.loading = false;
       },
@@ -42,17 +43,13 @@ export class HotelListComponent implements OnInit {
   }
 
   deleteHotel(id: string): void {
-    if (confirm('Tem certeza que deseja excluir este hotel?')) {
-      this.hotelService.deleteHotel(id).subscribe({
-        next: () => {
-          alert('Hotel excluído com sucesso!');
-          this.carregarHoteis();
-        },
-        error: (err: any) => {
-          console.error('Erro ao excluir hotel:', err);
-          alert('Erro ao excluir hotel.');
-        },
-      });
-    }
+    if (!confirm('Tem certeza que deseja excluir este hotel?')) return;
+    this.hotelService.deleteHotel(id).subscribe({
+      next: () => this.carregarHoteis(),
+      error: (err) => {
+        console.error('Erro ao excluir hotel:', err);
+        alert('Erro ao excluir hotel.');
+      }
+    });
   }
 }

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QuestionarioDto } from '../models/questionario-model';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class FormularioService {
 
-  private apiUrl = 'https://localhost:7092/api/Questionario';
+  private apiUrl = `${environment.apiUrl}/Questionario`;
 
   constructor(private http: HttpClient) {}
 

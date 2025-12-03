@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-usuario-form',
@@ -28,7 +29,7 @@ export class UsuarioForm {
   salvar() {
     console.log('Enviando para API:', this.usuario); 
 
-    this.http.post('https://localhost:7092/api/Usuario/CriarUsuario', this.usuario).subscribe({
+    this.http.post(`${environment.apiUrl}/Usuario/CriarUsuario`, this.usuario).subscribe({
       next: () => {
         alert('Usuário cadastrado com sucesso!');
         this.router.navigate(['/usuarios']);
