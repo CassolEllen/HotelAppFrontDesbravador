@@ -1,47 +1,130 @@
-.login-container {
-  max-width: 400px;
-  margin: 80px auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+/* ===== Layout geral ===== */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
 }
 
-h2 {
+/* ===== Card ===== */
+.login-card.elegant {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 40px 35px;
+  width: 380px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
   text-align: center;
-  margin-bottom: 1.5rem;
+  color: #fff;
+  animation: fadeIn 0.7s ease;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: 500;
+/* ===== Títulos ===== */
+.app-name {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 
-input {
-  width: 100%;
-  padding: 0.6rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.subtitle {
+  color: #d8e3e7;
+  margin-bottom: 25px;
 }
 
-button {
-  width: 100%;
-  padding: 0.7rem;
+/* ===== Inputs ===== */
+.form-group {
+  text-align: left;
+  margin-bottom: 22px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-top: 4px;
+}
+
+.input-wrapper input {
+  background: transparent;
   border: none;
-  border-radius: 8px;
-  background: #007bff;
+  outline: none;
+  flex: 1;
+  color: #fff;
+  font-size: 15px;
+}
+
+.input-wrapper input::placeholder {
+  color: #d9d9d9;
+}
+
+/* ===== Ícone (mesmo não sendo material-icons real) ===== */
+.icon {
+  font-size: 14px;
+  color: #e0e0e0;
+  white-space: nowrap;
+}
+
+/* ===== Botão ===== */
+.gradient-btn {
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
   color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4cc9f0, #4361ee, #3a0ca3);
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.gradient-btn:hover:not([disabled]) {
+  transform: scale(1.04);
+  opacity: 0.95;
+}
+
+.gradient-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== Outros textos ===== */
+.forgot {
+  margin-top: 12px;
+  font-size: 14px;
+  opacity: 0.85;
   cursor: pointer;
 }
 
-button:hover {
-  background: #0056b3;
+.forgot:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 .error {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
+  margin-top: 15px;
+  color: #ff8787;
+  font-weight: 600;
+}
+
+/* ===== Animação suave ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

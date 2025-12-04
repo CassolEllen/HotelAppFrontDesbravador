@@ -28,7 +28,7 @@ export class LoginComponent {
         this.loading = false;
 
         if (res && res.bearerToken) {
-          // Salva o token JWT
+          
           this.authService.salvarToken(res.bearerToken);
           this.router.navigate(['/dashboard']);
         } else {

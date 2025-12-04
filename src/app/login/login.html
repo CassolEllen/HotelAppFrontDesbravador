@@ -1,19 +1,45 @@
-<form (ngSubmit)="onLogin()">
-  <h2>Login</h2>
+<div class="login-wrapper">
+  <div class="login-card elegant">
+    <h1 class="app-name">HotelKKKKK</h1>
+    <p class="subtitle">Experiências que inspiram sua estadia</p>
 
-  <div class="form-group">
-    <label for="username">Usuário</label>
-    <input type="text" id="username" [(ngModel)]="username" name="username" required />
+    <form (ngSubmit)="onLogin()">
+
+      <div class="form-group">
+        <label for="username">Usuário</label>
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="username"
+            [(ngModel)]="username"
+            name="username" 
+            placeholder="Digite seu usuário"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <div class="input-wrapper">
+          <input 
+            type="password" 
+            id="password"
+            [(ngModel)]="password"
+            name="password" 
+            placeholder="Digite sua senha"
+            required
+          />
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loading" class="gradient-btn">
+        {{ loading ? 'Entrando...' : 'Entrar' }}
+      </button>
+
+      <p class="forgot">Esqueceu a senha?</p>
+
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
   </div>
-
-  <div class="form-group">
-    <label for="password">Senha</label>
-    <input type="password" id="password" [(ngModel)]="password" name="password" required />
-  </div>
-
-  <button type="submit" [disabled]="loading">
-    {{ loading ? 'Entrando...' : 'Entrar' }}
-  </button>
-
-  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
-</form>
+</div>
