@@ -1,38 +1,51 @@
-<div class="container mt-4">
+<div class="page-container">
 
-  <h2 class="mb-3">Lista de Hóspedes</h2>
-
-  <button class="btn btn-primary mb-3" (click)="criar()">Novo Hóspede</button>
-
-  <div *ngIf="carregando">⏳ Carregando hóspedes...</div>
-
-  <table *ngIf="!carregando && hospedes.length > 0" class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Quarto</th>
-        <th>Email</th>
-        <th>WhatsApp</th>
-        <th style="width: 180px;">Ações</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let h of hospedes">
-        <td>{{ h.nome }}</td>
-        <td>{{ h.quarto }}</td>
-        <td>{{ h.email }}</td>        
-        <td>{{ h.whatsapp }}</td>    
-        <td>
-          <button class="btn btn-sm btn-warning" (click)="editar(h.id)">Editar</button>
-          <button class="btn btn-sm btn-danger" (click)="deletar(h.id)">Excluir</button>
-          <button class="btn btn-sm btn-success" (click)="checkout(h.id)">Checkout</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div *ngIf="!carregando && hospedes.length === 0">
-    🔍 Nenhum hóspede encontrado.
+  <div class="header">
+    <h1>Hóspedes Cadastrados</h1>
+    <p class="subtitle">Gerencie os hóspedes do hotel de forma rápida e organizada</p>
   </div>
+
+  <div class="card">
+      
+      <div class="top-actions">
+        <button class="btn-primary" (click)="criar()">+ Novo Hóspede</button>
+      </div>
+
+      <div *ngIf="carregando" class="loading">
+        ⏳ Carregando hóspedes...
+      </div>
+
+      <table *ngIf="!carregando && hospedes.length > 0" class="data-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Quarto</th>
+            <th>Email</th>
+            <th>WhatsApp</th>
+            <th style="width: 200px;">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let h of hospedes">
+            <td>{{ h.nome }}</td>
+            <td>{{ h.quarto }}</td>
+            <td>{{ h.email }}</td>
+            <td>{{ h.whatsapp }}</td>
+
+            <td class="actions">
+              <button class="btn-warning" (click)="editar(h.id)">Editar</button>
+              <button class="btn-danger" (click)="deletar(h.id)">Excluir</button>
+              <button class="btn-success" (click)="checkout(h.id)">Checkout</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="!carregando && hospedes.length === 0" class="empty">
+        🔍 Nenhum hóspede encontrado.
+      </div>
+
+  </div>
+
 </div>

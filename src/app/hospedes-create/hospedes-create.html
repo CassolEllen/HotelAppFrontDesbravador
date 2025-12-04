@@ -1,36 +1,51 @@
-<form [formGroup]="form" (ngSubmit)="salvar()" class="form-container">
+<div class="page-container">
 
-  <h2>🧑‍💼 Cadastrar Hóspede</h2>
-
-  <div class="card">
-    <label>Nome *</label>
-    <input type="text" formControlName="nome" placeholder="Ex: João da Silva">
+  <div class="header">
+    <h1>Cadastrar Hóspede</h1>
+    <div class="subtitle">Preencha os dados para adicionar um novo hóspede</div>
   </div>
 
   <div class="card">
-    <label>Quarto *</label>
-    <input type="text" formControlName="quarto" placeholder="Ex: 205-A">
+    <form [formGroup]="form" (ngSubmit)="salvar()">
+
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" formControlName="nome" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label for="quarto">Quarto</label>
+        <input id="quarto" formControlName="quarto" type="text" />
+      </div>
+
+      <div class="subsection-title">Configuração do Hóspede</div>
+      <div formGroupName="configuracaoHospede">
+        <div class="form-group">
+          <label for="idioma">Idioma</label>
+          <select id="idioma" formControlName="idioma">
+            <option value="pt-BR">Português</option>
+            <option value="en-US">Inglês</option>
+            <option value="es-ES">Espanhol</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="subsection-title">Contato</div>
+      <div formGroupName="contato">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input id="email" formControlName="email" type="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" formControlName="whatsapp" type="text" />
+        </div>
+      </div>
+
+      <button class="btn-primary" type="submit">Cadastrar</button>
+
+    </form>
   </div>
 
-  <div formGroupName="configuracaoHospede" class="card">
-    <h3>Configurações</h3>
-    <label>Idioma *</label>
-    <select formControlName="idioma">
-      <option value="pt-BR">Português</option>
-      <option value="en-US">Inglês</option>
-      <option value="es-ES">Espanhol</option>
-    </select>
-  </div>
-
-  <div formGroupName="contato" class="card">
-    <h3>Contato</h3>
-
-    <label>Email *</label>
-    <input type="email" formControlName="email" placeholder="email@exemplo.com">
-
-    <label>Whatsapp *</label>
-    <input type="text" formControlName="whatsapp" placeholder="+55 11 99999-9999">
-  </div>
-
-  <button type="submit" [disabled]="form.invalid">Salvar</button>
-</form>
+</div>

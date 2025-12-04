@@ -9,6 +9,7 @@ import { HospedeDTo } from '../models/hospedes-model';
   selector: 'app-hospede-create',
   standalone: true,
   templateUrl: './hospedes-create.html',
+  styleUrls: ['./hospedes-create.css'],
   imports: [CommonModule, ReactiveFormsModule]
 })
 export class HospedeCreateComponent {

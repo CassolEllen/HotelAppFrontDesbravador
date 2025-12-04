@@ -6,8 +6,9 @@ import { HospedeService } from '../services/hospede-service';
 @Component({
   selector: 'app-hospedes-list',
   standalone: true,
-  imports: [CommonModule, RouterModule], // <-- essencial para *ngFor, *ngIf e routerLink
-  templateUrl: './hospedes-list.html'
+  imports: [CommonModule, RouterModule], 
+  templateUrl: './hospedes-list.html',
+  styleUrls: ['./hospedes-list.css']
 })
 export class HospedesListComponent implements OnInit {
   hospedes: any[] = [];
