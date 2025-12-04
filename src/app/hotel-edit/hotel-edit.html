@@ -1,34 +1,58 @@
-<div *ngIf="loading">Carregando...</div>
+<div class="page-container">
 
-<form *ngIf="!loading" (ngSubmit)="salvar()" #form="ngForm">
+  <div class="header">
+    <h1>Editar Hotel</h1>
+    <p class="subtitle">Atualize as informações abaixo</p>
+  </div>
 
-  <label>Nome *</label>
-  <input type="text" [(ngModel)]="hotel.nome" name="nome" required />
+  <div class="card">
 
-  <label>Endereço *</label>
-  <input type="text" [(ngModel)]="hotel.endereco" name="endereco" required />
+    <div *ngIf="loading" class="loading">Carregando...</div>
 
-  <label>Email *</label>
-  <input type="email" [(ngModel)]="hotel.contato.email" name="email" required />
+    <form *ngIf="!loading" (ngSubmit)="salvar()" #form="ngForm">
 
-  <label>Whatsapp *</label>
-  <input type="text" [(ngModel)]="hotel.contato.whatsapp" name="whatsapp" required />
+      <div class="form-group">
+        <label>Nome *</label>
+        <input type="text" [(ngModel)]="hotel.nome" name="nome" required />
+      </div>
 
-  <label>Idioma *</label>
-  <select [(ngModel)]="hotel.configuracaoHotel.idioma" name="idioma">
-    <option value="pt-BR">Português</option>
-    <option value="en-US">Inglês</option>
-    <option value="es-ES">Espanhol</option>
-    <option value="fr-FR">Francês</option>
-  </select>
+      <div class="form-group">
+        <label>Endereço *</label>
+        <input type="text" [(ngModel)]="hotel.endereco" name="endereco" required />
+      </div>
 
-  <label>Questionário vinculado</label>
-  <select [(ngModel)]="hotel.questionarioSelecionadoId" name="questionarioSelecionadoId">
-    <option [ngValue]="null">Nenhum</option>
-    <option *ngFor="let q of questionarios" [ngValue]="q.id">
-      {{ q.titulo }}
-    </option>
-  </select>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" [(ngModel)]="hotel.contato.email" name="email" required />
+      </div>
 
-  <button type="submit">Salvar</button>
-</form>
+      <div class="form-group">
+        <label>Whatsapp *</label>
+        <input type="text" [(ngModel)]="hotel.contato.whatsapp" name="whatsapp" required />
+      </div>
+
+      <div class="form-group">
+        <label>Idioma *</label>
+        <select [(ngModel)]="hotel.configuracaoHotel.idioma" name="idioma">
+          <option value="pt-BR">Português</option>
+          <option value="en-US">Inglês</option>
+          <option value="es-ES">Espanhol</option>
+          <option value="fr-FR">Francês</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Questionário vinculado</label>
+        <select [(ngModel)]="hotel.questionarioSelecionadoId" name="questionarioSelecionadoId">
+          <option [ngValue]="null">Nenhum</option>
+          <option *ngFor="let q of questionarios" [ngValue]="q.id">{{ q.titulo }}</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" type="submit">Salvar alterações</button>
+
+    </form>
+
+  </div>
+
+</div>

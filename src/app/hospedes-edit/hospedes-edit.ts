@@ -8,7 +8,7 @@ import { HospedeService } from '../services/hospede-service';
   selector: 'app-hospede-edit',
   standalone: true,
   templateUrl: './hospedes-edit.html',
-  styleUrls: ['./hospedes-edit.css'],  // ⬅ CSS aplicado
+  styleUrls: ['./hospedes-edit.css'], 
   imports: [
     CommonModule,
     ReactiveFormsModule

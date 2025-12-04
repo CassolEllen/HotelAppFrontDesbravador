@@ -12,6 +12,8 @@ import { Hotel } from '../models/hotel-model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './hotel-edit.html',
+  styleUrls: ['./hotel-edit.css'],
+  
 })
 export class HotelEditComponent implements OnInit {
 
