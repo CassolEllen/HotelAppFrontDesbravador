@@ -34,6 +34,10 @@ export class HospedeEditComponent implements OnInit {
       nome: ['', Validators.required],
       quarto: ['', Validators.required],
 
+      configuracaoHospede: this.fb.group({
+        idioma: ['pt-BR']   
+      }),
+
       contato: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         whatsapp: ['', Validators.required]
