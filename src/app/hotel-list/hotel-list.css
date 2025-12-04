@@ -1,87 +1,112 @@
-/* Título */
-h2 {
-  font-family: "Segoe UI", sans-serif;
-  margin-bottom: 10px;
-  color: #333;
+.page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
 }
 
-/* Botão adicionar */
-.top-bar {
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #555;
+}
+
+.card {
+  width: 100%;
+  max-width: 1000px;
+  padding: 25px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 15px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-warning,
+.btn-danger,
+.btn-success {
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 6px;
+  transition: 0.2s;
+}
+
+.btn-warning {
+  background: #f0ad4e;
+  color: #fff;
+}
+.btn-danger {
+  background: #d9534f;
+  color: #fff;
+}
+.btn-success {
+  background: #5cb85c;
+  color: #fff;
+}
+
+.btn-warning:hover,
+.btn-danger:hover,
+.btn-success:hover {
+  opacity: 0.85;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.data-table th {
+  background: #f7f7f7;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.data-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.data-table tr:hover {
+  background: #fafafa;
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+}
+
+.top-actions {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 15px;
-}
-
-.btn-add {
-  background-color: #43a047;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-add:hover {
-  background-color: #388e3c;
-  transform: scale(1.05);
-}
-
-/* Tabela de hotéis */
-.hotel-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  font-family: "Segoe UI", sans-serif;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.hotel-table th {
-  background-color: #1976d2;
-  color: white;
-  text-align: left;
-  padding: 12px;
-}
-
-.hotel-table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.hotel-table tr:hover {
-  background-color: #f5f5f5;
-}
-
-/* Botões de ação */
-.btn-edit {
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  margin-right: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-edit:hover {
-  background-color: #1565c0;
-}
-
-.btn-delete {
-  background-color: #e53935;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-delete:hover {
-  background-color: #c62828;
-  transform: scale(1.05);
 }

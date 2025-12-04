@@ -9,6 +9,7 @@ import { HotelService } from '../services/hotel-service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './hotel-list.html',
+  styleUrls: ['./hotel-list.css'],
 })
 export class HotelListComponent implements OnInit {
   hoteis: any[] = [];

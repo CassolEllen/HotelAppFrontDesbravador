@@ -1,31 +1,44 @@
-<h2>Lista de Hotéis</h2>
+<div class="page-container">
 
-<div style="margin-bottom: 12px;">
-  <button (click)="novoHotel()">➕ Cadastrar Novo Hotel</button>
+  <div class="header">
+    <h1>Hotéis Cadastrados</h1>
+    <p class="subtitle">Gerencie os hotéis cadastrados no sistema</p>
+  </div>
+
+  <div class="card">
+
+    <div class="top-actions">
+      <button class="btn-primary" (click)="novoHotel()">+ Novo Hotel</button>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Endereço</th>
+          <th>Email</th>
+          <th>WhatsApp</th>
+          <th>Idioma</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let hotel of hoteis">
+          <td>{{ hotel.nome }}</td>
+          <td>{{ hotel.endereco }}</td>
+          <td>{{ hotel.contato?.email }}</td>
+          <td>{{ hotel.contato?.whatsapp }}</td>
+          <td>{{ hotel.configuracaoHotel?.idioma }}</td>
+
+          <td class="actions">
+            <button class="btn-warning" (click)="editarHotel(hotel.id)">Editar</button>
+            <button class="btn-danger" (click)="deleteHotel(hotel.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
 </div>
-
-<table border="1" width="100%" cellpadding="6">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Endereço</th>
-      <th>Email</th>
-      <th>WhatsApp</th>
-      <th>Idioma</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let hotel of hoteis">
-      <td>{{ hotel.nome }}</td>
-      <td>{{ hotel.endereco }}</td>
-      <td>{{ hotel.contato?.email }}</td>
-      <td>{{ hotel.contato?.whatsapp }}</td>
-      <td>{{ hotel.configuracaoHotel?.idioma }}</td>
-      <td>
-        <button (click)="editarHotel(hotel.id)">✏️ Editar</button>
-        <button (click)="deleteHotel(hotel.id)">🗑️ Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
