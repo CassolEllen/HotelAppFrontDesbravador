@@ -8,15 +8,17 @@ import { HospedeService } from '../services/hospede-service';
   selector: 'app-hospede-edit',
   standalone: true,
   templateUrl: './hospedes-edit.html',
+  styleUrls: ['./hospedes-edit.css'],  // ⬅ CSS aplicado
   imports: [
     CommonModule,
-    ReactiveFormsModule   // ✅ IMPORTANTE
+    ReactiveFormsModule
   ]
 })
 export class HospedeEditComponent implements OnInit {
 
   id!: string;
   form!: FormGroup;
+  loading = true;   // ⬅ Agora existe
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +29,7 @@ export class HospedeEditComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Criação do form
     this.form = this.fb.group({
       nome: ['', Validators.required],
       quarto: ['', Validators.required],
@@ -37,20 +40,31 @@ export class HospedeEditComponent implements OnInit {
       })
     });
 
+    // Pegando ID da URL
     this.id = this.route.snapshot.params['id'];
+
+    // Carrega dados
     this.carregarDados();
   }
 
   carregarDados() {
-    this.hospedeService.buscarPorId(this.id).subscribe(h => {
-      this.form.patchValue({
-        nome: h.nome,
-        quarto: h.quarto,
-        contato: {
-          email: h.contato?.email,
-          whatsapp: h.contato?.whatsapp
-        }
-      });
+    this.hospedeService.buscarPorId(this.id).subscribe({
+      next: (h) => {
+        this.form.patchValue({
+          nome: h.nome,
+          quarto: h.quarto,
+          contato: {
+            email: h.contato?.email,
+            whatsapp: h.contato?.whatsapp
+          }
+        });
+
+        this.loading = false;   // ⬅ Só libera o formulário após carregar
+      },
+      error: () => {
+        alert("Erro ao carregar hóspede");
+        this.router.navigate(['/hospedes']);
+      }
     });
   }
 
@@ -58,7 +72,10 @@ export class HospedeEditComponent implements OnInit {
     if (this.form.invalid) return;
 
     this.hospedeService.atualizar(this.id, this.form.value).subscribe({
-      next: () => this.router.navigate(['/hospede/listar']),
+      next: () => {
+        alert("Hóspede atualizado com sucesso!");
+        this.router.navigate(['/hospedes']);
+      },
       error: () => alert('Erro ao salvar')
     });
   }

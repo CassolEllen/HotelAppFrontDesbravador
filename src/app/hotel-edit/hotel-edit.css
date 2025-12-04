@@ -9,7 +9,7 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* Título */
+
 h2 {
   font-family: "Segoe UI", sans-serif;
   margin-bottom: 10px;
@@ -18,7 +18,7 @@ h2 {
   text-align: center;
 }
 
-/* Formulário */
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ h2 {
   box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.25);
 }
 
-/* Botões */
+
 .btn-save {
   background-color: #1976d2;
   color: white;
