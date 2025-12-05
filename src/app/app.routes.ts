@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'hoteis', component: HotelListComponent, canActivate: [authGuard] },
   { path: 'hoteis/novo', component: HotelCreateComponent, canActivate: [authGuard] },
   { path: 'hoteis/editar/:id', component: HotelEditComponent, canActivate: [authGuard] },
-  { path: 'usuarios', loadComponent: () => import('./usuario/usuario-list').then(m => m.UsuarioList) },
+  //{ path: 'usuarios', loadComponent: () => import('./usuario/usuario-list').then(m => m.UsuarioList) },
   { path: 'usuarios', component: UsuarioList },
   { path: 'usuarios/novo', component: UsuarioForm },
   { path: 'usuarios/editar/:id', component: UsuarioForm },
@@ -31,7 +31,13 @@ export const routes: Routes = [
   { path: 'formularios/editar/:id', component: FormularioService },
   { path: 'hospedes', component: HospedesListComponent },
   { path: 'hospedes/novo', component: HospedeCreateComponent },
-  { path: 'hospedes/editar/:id', component: HospedeEditComponent }
-
+  { path: 'hospedes/editar/:id', component: HospedeEditComponent },
+  {
+    path: 'envioFormulario',
+    loadComponent: () =>
+      import('./formularios-envio/formularios-envio')
+        .then(m => m.EnvioFormularioComponent)
+  }
+  
 
 ];
