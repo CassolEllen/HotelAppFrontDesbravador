@@ -1,0 +1,38 @@
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  label {
+    margin-top: 10px;
+    display: block;
+  }
+  
+  select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .sucesso {
+    margin-top: 20px;
+    padding: 10px;
+    background: #d4edda;
+    color: #155724;
+  }
+  

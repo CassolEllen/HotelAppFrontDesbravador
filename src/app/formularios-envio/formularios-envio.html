@@ -1,0 +1,90 @@
+<div class="container" *ngIf="questionario">
+
+    <h1>{{ questionario.titulo }}</h1>
+  
+    <form [formGroup]="form" (ngSubmit)="enviar()">
+  
+      <div *ngFor="let p of questionario.perguntas">
+  
+        <div class="pergunta">
+          <label>{{ p.descricao }}</label>
+  
+          <div [ngSwitch]="p.tipo">
+  
+            <ng-template [ngSwitchCase]="1">
+              <textarea 
+                [formControlName]="p.id"
+                placeholder="Digite aqui">
+              </textarea>
+            </ng-template>
+  
+            <ng-template [ngSwitchCase]="2">
+              <select [formControlName]="p.id">
+                <option value="">Selecione</option>
+                <option *ngFor="let opc of p.opcoes" [value]="opc">
+                  {{ opc }}
+                </option>
+              </select>
+            </ng-template>
+  
+            <ng-template [ngSwitchCase]="3">
+              <input 
+                type="number"
+                [min]="p.notaMin"
+                [max]="p.notaMax"
+                [formControlName]="p.id"
+              />
+            </ng-template>
+  
+            <ng-template [ngSwitchCase]="4">
+              <div class="radio-group">
+                <label *ngFor="let opc of p.opcoes">
+                  <input 
+                    type="radio"
+                    [value]="opc"
+                    [formControlName]="p.id"
+                  />
+                  {{ opc }}
+                </label>
+              </div>
+            </ng-template>
+  
+            <ng-template [ngSwitchCase]="5">
+              <div class="checkbox-group">
+                <label *ngFor="let opc of p.opcoes">
+                  <input 
+                    type="checkbox"
+                    [value]="opc"
+                    (change)="onCheckboxChange($event, p.id)"
+                  />
+                  {{ opc }}
+                </label>
+              </div>
+            </ng-template>
+  
+            <ng-template [ngSwitchCase]="6">
+              <input 
+                type="date"
+                [formControlName]="p.id"
+              />
+            </ng-template>
+            
+            <ng-template ngSwitchDefault>
+              <p style="color: red;">Tipo de pergunta não reconhecido ({{ p.tipo }})</p>
+            </ng-template>
+  
+          </div>
+        </div>
+  
+      </div>
+  
+      <button type="submit" [disabled]="form.invalid">
+        Enviar
+      </button>
+  
+    </form>
+  
+    <div *ngIf="enviado" class="sucesso">
+      Obrigado pela sua resposta!
+    </div>
+  </div>

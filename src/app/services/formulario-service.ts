@@ -16,7 +16,7 @@ export class FormularioService {
   }
 
   buscarPorId(id: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/BuscarQuestionarioPorId/${id}`, {});
+    return this.http.get(`${this.apiUrl}/BuscarQuestionarioPorId/${id}`, {});
   }
 
   criarQuestionario(payload: QuestionarioDto) {
