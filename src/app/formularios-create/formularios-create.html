@@ -1,58 +1,78 @@
-<form [formGroup]="form" (ngSubmit)="enviar()">
+<form [formGroup]="form" (ngSubmit)="enviar()" class="page-container">
 
-    <h2>Criar Questionário</h2>
-  
+  <h2 class="page-title">Criar Questionário</h2>
+
+  <div class="form-group">
     <label>Título:</label>
-    <input type="text" formControlName="titulo">
-  
-    <button type="button" (click)="addPergunta()">+ Adicionar Pergunta</button>
-    <hr>
-  
-    <div formArrayName="perguntas">
-  
-      <div *ngFor="let p of perguntas.controls; let i=index" [formGroupName]="i" class="card">
-  
+    <input type="text" formControlName="titulo" class="input">
+  </div>
+
+  <button type="button" (click)="addPergunta()" class="btn-add">
+    + Adicionar Pergunta
+  </button>
+
+  <div formArrayName="perguntas" class="perguntas-container">
+
+    <div *ngFor="let p of perguntas.controls; let i=index" 
+         [formGroupName]="i" 
+         class="card">
+
+      <div class="card-header">
         <h3>Pergunta {{i+1}}</h3>
-  
+      </div>
+
+      <div class="form-group">
         <label>Descrição:</label>
-        <input type="text" formControlName="descricao">
-  
+        <input type="text" formControlName="descricao" class="input">
+      </div>
+
+      <div class="form-group">
         <label>Tipo:</label>
-        <select formControlName="tipoPergunta">
-          <option *ngFor="let t of tipos" [value]="t.id">{{t.label}}</option>
+        <select formControlName="tipoPergunta" class="input">
+          <option *ngFor="let t of tipos" [value]="t.id">
+            {{t.label}}
+          </option>
         </select>
-  
-        <!-- Campos de opções -->
-        <div *ngIf="p.value.tipoPergunta == 2 || p.value.tipoPergunta == 4 || p.value.tipoPergunta == 5">
-  
-          <h4>Opções:</h4>
-          <div formArrayName="opcoes">
-            <button type="button" (click)="addOpcao(i)">+ Opção</button>
-  
-            <div *ngFor="let op of getOpcoes(i).controls; let j=index">
-              <input [formControlName]="j" placeholder="Opção">
-            </div>
+      </div>
+
+      <!-- Opções -->
+      <div *ngIf="p.value.tipoPergunta == 2 || p.value.tipoPergunta == 4 || p.value.tipoPergunta == 5" class="opcoes-box">
+
+        <div class="options-header">
+          <h4>Opções</h4>
+          <button type="button" (click)="addOpcao(i)" class="btn-small">
+            + Opção
+          </button>
+        </div>
+
+        <div formArrayName="opcoes" class="opcoes-list">
+          <div *ngFor="let op of getOpcoes(i).controls; let j=index" class="form-group">
+            <input [formControlName]="j" placeholder="Opção" class="input">
           </div>
         </div>
-  
-        <!-- Campos de nota -->
-        <div *ngIf="p.value.tipoPergunta == 3" style="margin-top:10px">
-          <label>Min:</label>
-          <input type="number" formControlName="notaMin">
-  
-          <label>Max:</label>
-          <input type="number" formControlName="notaMax">
-        </div>
-  
-        <hr>
+
       </div>
-  
+
+      <!-- Nota -->
+      <div *ngIf="p.value.tipoPergunta == 3" class="notas-container">
+        <div class="form-group">
+          <label>Nota Mínima:</label>
+          <input type="number" formControlName="notaMin" class="input">
+        </div>
+
+        <div class="form-group">
+          <label>Nota Máxima:</label>
+          <input type="number" formControlName="notaMax" class="input">
+        </div>
+      </div>
+
     </div>
-  
-    <button type="submit">Salvar Questionário</button>
-  
-    <p *ngIf="erro" style="color:red">{{erro}}</p>
-    <p *ngIf="sucesso" style="color:green">{{sucesso}}</p>
-  
-  </form>
-  
+
+  </div>
+
+  <button type="submit" class="btn-save">Salvar Questionário</button>
+
+  <p *ngIf="erro" class="msg-erro">{{erro}}</p>
+  <p *ngIf="sucesso" class="msg-sucesso">{{sucesso}}</p>
+
+</form>

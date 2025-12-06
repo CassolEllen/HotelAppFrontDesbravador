@@ -9,6 +9,7 @@ import { FormularioService } from '../services/formulario-service';
   imports: [CommonModule],
   templateUrl: './formularios-list.html',
   styleUrls: ['./formularios-list.css']
+
 })
 export class FormulariosListComponent {
   formularios: any[] = [];

@@ -1,33 +1,39 @@
-<div class="lista-container">
-    <h2>📋 Lista de Formulários</h2>
-  
-    <button class="novo-btn" (click)="novo()">+ Novo Formulário</button>
-  
-    <div *ngIf="carregando">Carregando...</div>
-  
-    <table *ngIf="!carregando && formularios.length > 0">
+<div class="page-container">
+
+  <div class="header">
+    <h2>Formulários</h2>
+    <button class="btn-novo" (click)="novo()">+ Novo Formulário</button>
+  </div>
+
+  <div class="card">
+    <div *ngIf="carregando" class="loading">Carregando...</div>
+
+    <table *ngIf="!carregando && formularios.length > 0" class="table">
       <thead>
         <tr>
           <th>Título</th>
           <th>Hotel</th>
           <th>Perguntas</th>
-          <th>Ações</th>
+          <th class="col-acoes">Ações</th>
         </tr>
       </thead>
-  
+
       <tbody>
         <tr *ngFor="let f of formularios">
           <td>{{ f.titulo }}</td>
           <td>{{ f.nomeHotel }}</td>
           <td>{{ f.perguntas.length }}</td>
-          <td>
-            <button (click)="editar(f.id)">Editar</button>
-            <button class="del" (click)="deletar(f.id)">Excluir</button>
+          <td class="acoes">
+            <button class="btn editar" (click)="editar(f.id)">Editar</button>
+            <button class="btn deletar" (click)="deletar(f.id)">Excluir</button>
           </td>
         </tr>
       </tbody>
     </table>
-  
-    <p *ngIf="!carregando && formularios.length === 0">Nenhum formulário cadastrado.</p>
+
+    <p *ngIf="!carregando && formularios.length === 0" class="empty">
+      Nenhum formulário cadastrado.
+    </p>
   </div>
-  
+
+</div>

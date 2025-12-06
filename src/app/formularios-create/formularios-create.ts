@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   selector: 'app-formularios-create',
   standalone: true,
   templateUrl: './formularios-create.html',
+  styleUrls: ['./formularios-create.css'],
   imports: [ReactiveFormsModule, FormsModule, CommonModule],
 })
 export class FormulariosCreate {
@@ -37,7 +38,6 @@ export class FormulariosCreate {
     });
   }
 
-  // ================= GETTERS =================
   get perguntas(): FormArray {
     return this.form.get('perguntas') as FormArray;
   }
@@ -46,7 +46,6 @@ export class FormulariosCreate {
     return this.perguntas.at(i).get('opcoes') as FormArray;
   }
 
-  // ================= ADICIONAR → PERGUNTA =================
   addPergunta() {
     this.perguntas.push(this.fb.group({
       descricao: ['', Validators.required],
@@ -61,42 +60,53 @@ export class FormulariosCreate {
     this.getOpcoes(i).push(this.fb.control('', Validators.required));
   }
 
-  // ================= ENVIAR =================
   enviar() {
+    this.erro = null;
+    this.sucesso = null;
+
     if (this.form.invalid) {
       this.erro = "Preencha todos os campos obrigatórios.";
       return;
     }
 
-    let payload = this.form.value;
+    let payload = structuredClone(this.form.value); //  ✅ evita modificar o form original
 
-    payload.perguntas = payload.perguntas.map((p: any) => {
+    const perguntas = [];
 
-      // ↓ CONVERTE STRING PARA NUMBER (Enum do backend aceita número)
+    for (let p of payload.perguntas) {
+
       p.tipoPergunta = Number(p.tipoPergunta);
 
-      // Se não for tipo de opções → remove
-      if (![2, 4, 5].includes(p.tipoPergunta)) delete p.opcoes;
+      // 🔥 TIPOS QUE PRECISAM DE OPÇÕES
+      if ([2, 4, 5].includes(p.tipoPergunta)) {
+        if (!p.opcoes || p.opcoes.length === 0) {
+          this.erro = "Perguntas de múltipla escolha precisam de opções.";
+          return;
+        }
+      } else {
+        delete p.opcoes;
+      }
 
-      // Se for nota, valida e mantém
+      // 🔥 VALIDAÇÃO DE NOTA
       if (p.tipoPergunta === 3) {
         if (p.notaMin == null || p.notaMax == null) {
-          this.erro = "Preencha Nota Mínima e Máxima na pergunta com tipo Nota.";
-          return null;
+          this.erro = "Preencha Nota Mínima e Máxima.";
+          return;
         }
         if (p.notaMin >= p.notaMax) {
           this.erro = "Nota mínima deve ser menor que a máxima.";
-          return null;
+          return;
         }
       } else {
         delete p.notaMin;
         delete p.notaMax;
       }
 
-      return p;
-    });
+      perguntas.push(p); //  ✅ não insere null
+    }
 
-    // 🔥 FINAL → chama API
+    payload.perguntas = perguntas;
+
     this.service.criarQuestionario(payload).subscribe({
       next: () => {
         this.sucesso = "Questionário criado com sucesso!";

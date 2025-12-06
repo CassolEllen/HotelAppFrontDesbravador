@@ -9,15 +9,8 @@ import { HospedeService } from '../services/hospede-service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './hospedes-edit.html',
-<<<<<<< HEAD
-  styleUrl: './hospedes-edit.css'
-=======
   styleUrls: ['./hospedes-edit.css'], 
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ]
->>>>>>> a5b77af5fa79e712d1fc75b75254a8d802589009
+
 })
 export class HospedesEditComponent implements OnInit {
 
@@ -37,14 +30,9 @@ export class HospedesEditComponent implements OnInit {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       quarto: ['', Validators.required],
-<<<<<<< HEAD
-=======
-
       configuracaoHospede: this.fb.group({
         idioma: ['pt-BR']   
       }),
-
->>>>>>> a5b77af5fa79e712d1fc75b75254a8d802589009
       contato: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         whatsapp: ['', Validators.required],

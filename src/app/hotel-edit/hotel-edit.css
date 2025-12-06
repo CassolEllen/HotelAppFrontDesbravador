@@ -6,23 +6,20 @@
   padding: 40px 20px;
 }
 
-<<<<<<< HEAD
 /* Título */
 h2 {
   font-family: "Segoe UI", sans-serif;
   margin-bottom: 10px;
   color: #333;
   font-weight: 600;
-=======
+}
+
 .header {
->>>>>>> a5b77af5fa79e712d1fc75b75254a8d802589009
+
   text-align: center;
   margin-bottom: 25px;
 }
 
-<<<<<<< HEAD
-/* Grupos do formulário */
-=======
 .header h1 {
   font-size: 32px;
   font-weight: 700;
@@ -50,7 +47,7 @@ h2 {
   color: #666;
 }
 
->>>>>>> a5b77af5fa79e712d1fc75b75254a8d802589009
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -80,14 +77,13 @@ h2 {
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
-<<<<<<< HEAD
+
 /* Botão salvar */
 .btn-save {
   background-color: #1976d2;
-=======
+}
 .btn-primary {
   background: #007bff;
->>>>>>> a5b77af5fa79e712d1fc75b75254a8d802589009
   color: white;
   border: none;
   padding: 12px 18px;
@@ -99,7 +95,6 @@ h2 {
   width: 100%;
 }
 
-<<<<<<< HEAD
 .btn-save:hover {
   background-color: #1565c0;
   transform: scale(1.02);
@@ -121,9 +116,8 @@ h2 {
 
 .btn-back:hover {
   background-color: #757575;
-=======
+}
 .btn-primary:hover {
   opacity: 0.9;
->>>>>>> a5b77af5fa79e712d1fc75b75254a8d802589009
   transform: scale(1.02);
 }

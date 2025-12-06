@@ -31,18 +31,13 @@ export const routes: Routes = [
   { path: 'formularios/editar/:id', component: FormularioService },
   { path: 'hospedes', component: HospedesListComponent },
   { path: 'hospedes/novo', component: HospedeCreateComponent },
-<<<<<<< HEAD
-  { path: 'hospedes/editar/:id', component: HospedesEditComponent }
-=======
-  { path: 'hospedes/editar/:id', component: HospedeEditComponent },
+  { path: 'hospedes/editar/:id', component: HospedesEditComponent },
+
   {
     path: 'envioFormulario',
     loadComponent: () =>
       import('./formularios-envio/formularios-envio')
         .then(m => m.EnvioFormularioComponent)
   }
-  
-
->>>>>>> a5b77af5fa79e712d1fc75b75254a8d802589009
 ];
 
