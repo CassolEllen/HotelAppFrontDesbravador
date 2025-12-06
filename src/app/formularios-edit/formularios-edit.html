@@ -1,0 +1,60 @@
+<div class="page-container" *ngIf="!carregando">
+
+  <h2 class="page-title">Editar Formulário</h2>
+
+  <div class="form-group">
+    <label>Título</label>
+    <input type="text" [(ngModel)]="titulo" class="input">
+  </div>
+
+  <div class="form-group">
+    <label>Hotel ID</label>
+    <input type="text" [(ngModel)]="hotelId" class="input">
+  </div>
+
+  <h3>Perguntas</h3>
+
+  <div class="card" *ngFor="let p of perguntas; let i = index">
+
+    <div class="form-group">
+      <label>Pergunta</label>
+      <input type="text" [(ngModel)]="p.texto" class="input">
+    </div>
+
+    <div class="form-group">
+      <label>Tipo</label>
+      <select [(ngModel)]="p.tipo" class="input">
+        <option value="texto">Texto</option>
+        <option value="multipla">Múltipla Escolha</option>
+      </select>
+    </div>
+
+    <!-- Opções -->
+    <div *ngIf="p.tipo === 'multipla'" class="opcoes-box">
+
+      <div class="options-header">
+        <h4>Opções</h4>
+        <button type="button" class="btn-small" (click)="adicionarOpcao(i)">+ Opção</button>
+      </div>
+
+      <div class="form-group" *ngFor="let op of p.opcoes; let j = index">
+        <input type="text" class="input" [(ngModel)]="p.opcoes[j]">
+        <button class="del" type="button" (click)="removerOpcao(i, j)">Excluir</button>
+      </div>
+
+    </div>
+
+    <button class="del" type="button" (click)="removerPergunta(i)">Remover Pergunta</button>
+
+  </div>
+
+  <button class="btn-add" type="button" (click)="adicionarPergunta()">+ Adicionar Pergunta</button>
+
+  <button class="btn-save" type="button" (click)="salvar()">Salvar Alterações</button>
+
+  <p *ngIf="erro" class="msg-erro">{{erro}}</p>
+  <p *ngIf="sucesso" class="msg-sucesso">{{sucesso}}</p>
+
+</div>
+
+<div *ngIf="carregando">Carregando...</div>
