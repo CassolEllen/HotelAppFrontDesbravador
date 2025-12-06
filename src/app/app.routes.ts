@@ -10,7 +10,7 @@ import { FormularioService } from './services/formulario-service';
 import { FormulariosCreate } from './formularios-create/formularios-create';
 import { HotelCreateComponent } from './hotel-create/hotel-create';
 import { HotelEditComponent } from './hotel-edit/hotel-edit';
-import { HospedeEditComponent } from './hospedes-edit/hospedes-edit';
+import { HospedesEditComponent } from './hospedes-edit/hospedes-edit';
 import { HospedeCreateComponent } from './hospedes-create/hospedes-create';
 import { HospedesListComponent } from './hospedes-list/hospedes-list';
 
@@ -31,7 +31,6 @@ export const routes: Routes = [
   { path: 'formularios/editar/:id', component: FormularioService },
   { path: 'hospedes', component: HospedesListComponent },
   { path: 'hospedes/novo', component: HospedeCreateComponent },
-  { path: 'hospedes/editar/:id', component: HospedeEditComponent }
-
-
+  { path: 'hospedes/editar/:id', component: HospedesEditComponent }
 ];
+

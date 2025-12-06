@@ -1,4 +1,3 @@
- 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +11,7 @@ import { Hotel } from '../models/hotel-model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './hotel-edit.html',
+  styleUrls: ['./hotel-edit.css']
 })
 export class HotelEditComponent implements OnInit {
 
@@ -42,20 +42,19 @@ export class HotelEditComponent implements OnInit {
     }
   }
 
-carregarHotel(id: string) {
-  this.loading = true;
+  carregarHotel(id: string) {
+    this.loading = true;
 
-  this.hotelService.getHotelById(id).subscribe({
-    next: (res) => {
-      this.hotel = res;
-      this.loading = false;
-    },
-    error: () => {
-      this.loading = false;
-    }
-  });
-}
-
+    this.hotelService.getHotelById(id).subscribe({
+      next: (res) => {
+        this.hotel = res;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
+  }
 
   carregarQuestionarios() {
     this.questionarioService.listar().subscribe({
@@ -71,5 +70,10 @@ carregarHotel(id: string) {
       next: () => this.router.navigate(['/hoteis']),
       error: (err) => console.error('Erro ao atualizar hotel:', err)
     });
+  }
+
+  // ✅ Adicionado para corrigir erro no template
+  voltar() {
+    this.router.navigate(['/hoteis']);
   }
 }

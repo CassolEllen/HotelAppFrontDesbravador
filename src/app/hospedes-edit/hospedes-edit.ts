@@ -1,69 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HospedeService } from '../services/hospede-service';
 
 @Component({
-  selector: 'app-hospede-edit',
+  selector: 'app-hospedes-edit',
   standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './hospedes-edit.html',
-  styleUrls: ['./hospedes-edit.css'],  // ⬅ CSS aplicado
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ]
+  styleUrl: './hospedes-edit.css'
 })
-export class HospedeEditComponent implements OnInit {
+export class HospedesEditComponent implements OnInit {
 
-  id!: string;
   form!: FormGroup;
-  loading = true;   // ⬅ Agora existe
+  loading = true;
+  id!: string;
 
   constructor(
-    private fb: FormBuilder,
     private route: ActivatedRoute,
-    private hospedeService: HospedeService,
-    private router: Router
+    private fb: FormBuilder,
+    private service: HospedeService
   ) {}
 
   ngOnInit(): void {
+    this.id = String(this.route.snapshot.paramMap.get('id'));
 
-    // Criação do form
     this.form = this.fb.group({
       nome: ['', Validators.required],
       quarto: ['', Validators.required],
-
       contato: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
-        whatsapp: ['', Validators.required]
+        whatsapp: ['', Validators.required],
       })
     });
 
-    // Pegando ID da URL
-    this.id = this.route.snapshot.params['id'];
-
-    // Carrega dados
-    this.carregarDados();
+    this.carregarHospede();
   }
 
-  carregarDados() {
-    this.hospedeService.buscarPorId(this.id).subscribe({
-      next: (h) => {
-        this.form.patchValue({
-          nome: h.nome,
-          quarto: h.quarto,
-          contato: {
-            email: h.contato?.email,
-            whatsapp: h.contato?.whatsapp
-          }
-        });
-
-        this.loading = false;   // ⬅ Só libera o formulário após carregar
+  carregarHospede() {
+    this.service.buscarPorId(this.id).subscribe({
+      next: (res: any) => {
+        this.form.patchValue(res);
+        this.loading = false;
       },
       error: () => {
         alert("Erro ao carregar hóspede");
-        this.router.navigate(['/hospedes']);
+        this.loading = false;
       }
     });
   }
@@ -71,12 +54,13 @@ export class HospedeEditComponent implements OnInit {
   salvar() {
     if (this.form.invalid) return;
 
-    this.hospedeService.atualizar(this.id, this.form.value).subscribe({
+    this.service.atualizar(this.id, this.form.value).subscribe({
       next: () => {
-        alert("Hóspede atualizado com sucesso!");
-        this.router.navigate(['/hospedes']);
+        alert("Dados atualizados com sucesso!");
       },
-      error: () => alert('Erro ao salvar')
+      error: () => {
+        alert("Erro ao salvar alterações");
+      }
     });
   }
 }
