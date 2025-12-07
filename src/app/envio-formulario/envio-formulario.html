@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="card">
+    <h2>Avaliação de Experiência</h2>
+
+    <div *ngIf="carregando" class="loading">Carregando questionário...</div>
+
+    <form *ngIf="!carregando && questionario" (ngSubmit)="enviar()">
+
+      <h3>{{ questionario.titulo }}</h3>
+
+      <div
+        class="pergunta"
+        *ngFor="let p of questionario.perguntas; let i = index"
+      >
+        <label>{{ i + 1 }}. {{ p.texto }}</label>
+
+        <!-- Pergunta tipo texto -->
+        <textarea
+          *ngIf="p.tipo === 'texto'"
+          [(ngModel)]="p.respostaTexto"
+          name="texto{{ p.id }}"
+          rows="3"
+        ></textarea>
+
+        <!-- Pergunta tipo nota -->
+        <input
+          *ngIf="p.tipo === 'nota'"
+          type="number"
+          min="0"
+          max="10"
+          [(ngModel)]="p.respostaNota"
+          name="nota{{ p.id }}"
+        />
+
+        <!-- Pergunta com alternativas únicas -->
+        <select
+          *ngIf="p.tipo === 'alternativa'"
+          [(ngModel)]="p.opcaoSelecionada"
+          name="alternativa{{ p.id }}"
+        >
+          <option value="">Selecione...</option>
+          <option *ngFor="let o of p.opcoes" [value]="o">{{ o }}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-enviar">Enviar Avaliação</button>
+    </form>
+
+    <div *ngIf="!carregando && !questionario">
+      <p>Nenhum questionário encontrado.</p>
+    </div>
+  </div>
+</div>

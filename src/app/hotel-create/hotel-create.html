@@ -43,7 +43,14 @@
             <option value="fr-FR">Francês</option>
           </select>
         </div>
+      </div>
 
+      <div class="form-group">
+        <label for="questionarioSelecionadoId">Questionário vinculado</label>
+        <select id="questionarioSelecionadoId" formControlName="questionarioSelecionadoId">
+          <option [ngValue]="null">Nenhum</option>
+          <option *ngFor="let q of questionarios" [ngValue]="q.id">{{ q.titulo }}</option>
+        </select>
       </div>
 
       <button class="btn-primary" type="submit" [disabled]="hotelForm.invalid">

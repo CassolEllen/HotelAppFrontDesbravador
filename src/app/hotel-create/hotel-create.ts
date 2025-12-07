@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HotelService } from '../services/hotel-service';
+import { FormularioService } from '../services/formulario-service';
 
 @Component({
   selector: 'app-hotel-create',
@@ -11,15 +12,20 @@ import { HotelService } from '../services/hotel-service';
   templateUrl: './hotel-create.html',
   styleUrls: ['./hotel-create.css']
 })
-export class HotelCreateComponent {
+export class HotelCreateComponent implements OnInit {
+
   hotelForm: FormGroup;
   sucesso: string | null = null;
   erro: string | null = null;
 
+  // 👇 Lista dos questionários para o dropdown
+  questionarios: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private hotelService: HotelService,
-    private router: Router
+    private router: Router,
+    private questionarioService: FormularioService // 👈 ADICIONADO
   ) {
     this.hotelForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2)]],
@@ -31,14 +37,30 @@ export class HotelCreateComponent {
       configuracaoHotel: this.fb.group({
         idioma: ['pt-BR', Validators.required]
       }),
+
+      // 👇 Campo que vincula o questionário ao hotel
       questionarioSelecionadoId: [null]
+    });
+  }
+
+  ngOnInit(): void {
+    this.carregarQuestionarios();
+  }
+
+  carregarQuestionarios() {
+    this.questionarioService.listar().subscribe({
+      next: (res) => {
+        this.questionarios = res;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar questionários:', err);
+      }
     });
   }
 
   onSubmit(): void {
     if (this.hotelForm.invalid) return;
 
-    // envia no formato HotelDTo (contato + configuracao)
     this.hotelService.createHotel(this.hotelForm.value).subscribe({
       next: () => {
         this.sucesso = 'Hotel cadastrado com sucesso!';

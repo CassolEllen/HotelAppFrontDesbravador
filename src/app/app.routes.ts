@@ -36,9 +36,10 @@ export const routes: Routes = [
   { path: 'hospedes/editar/:id', component: HospedesEditComponent },
 
   {
-    path: 'envioFormulario',
-    loadComponent: () =>
-      import('./formularios-envio/formularios-envio')
-        .then(m => m.EnvioFormularioComponent)
-  }
+  path: 'envioFormulario',
+  loadComponent: () =>
+    import('./envio-formulario/envio-formulario')
+      .then(m => m.EnvioFormularioComponent)
+}
+
 ];
