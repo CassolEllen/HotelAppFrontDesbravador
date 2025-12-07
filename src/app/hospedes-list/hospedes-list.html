@@ -8,9 +8,12 @@
   <div class="card">
       
       <div class="top-actions">
+        <button class="btn-secondary" (click)="voltar()">
+          ← Voltar
+        </button>
+        
         <button class="btn-primary" (click)="criar()">+ Novo Hóspede</button>
       </div>
-
       <div *ngIf="carregando" class="loading">
         ⏳ Carregando hóspedes...
       </div>

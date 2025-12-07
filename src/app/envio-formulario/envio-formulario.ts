@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-// 1. IMPORTAR o arquivo de ambiente
 import { environment } from './../../environments/environment'; 
 
 @Component({
@@ -33,15 +32,12 @@ export class EnvioFormularioComponent implements OnInit {
     this.carregarQuestionario();
   }
 
-  carregarQuestionario() {
-    if (!this.questionarioId) {
-      this.carregando = false;
-      return;
-    }
+ carregarQuestionario() {
+  if (!this.questionarioId) {
+    this.carregando = false;
+      return;
+      }
 
-    // 2. CORREÇÃO DE ROTA E USO DA VARIÁVEL DE AMBIENTE:
-    //    Garante que a URL da API seja absoluta (ex: https://localhost:7092/api/...)
-    //    e usa o nome da rota correto: BuscarQuestionarioPorId
     this.http
       .get(`${environment.apiUrl}/Questionario/BuscarQuestionarioPorId/${this.questionarioId}`)
       .subscribe({
