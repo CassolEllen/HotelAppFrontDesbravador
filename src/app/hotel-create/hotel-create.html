@@ -1,45 +1,60 @@
-<div class="hotel-create-container">
-  <h2>Cadastrar Hotel</h2>
+<div class="page-container">
 
-  <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
+  <div class="header">
+    <h1>Cadastrar Hotel</h1>
+    <div class="subtitle">Preencha os dados para adicionar um novo hotel</div>
+  </div>
 
-    <div class="form-group">
-      <label for="nome">Nome:</label>
-      <input id="nome" type="text" formControlName="nome" />
-    </div>
+  <div class="card">
+    <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
 
-    <div class="form-group">
-      <label for="endereco">Endereço:</label>
-      <input id="endereco" type="text" formControlName="endereco" />
-    </div>
-
-    <div formGroupName="contato">
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input id="email" type="email" formControlName="email" />
+        <label for="nome">Nome</label>
+        <input id="nome" formControlName="nome" type="text" />
       </div>
 
       <div class="form-group">
-        <label for="whatsapp">WhatsApp:</label>
-        <input id="whatsapp" type="text" formControlName="whatsapp" />
+        <label for="endereco">Endereço</label>
+        <input id="endereco" formControlName="endereco" type="text" />
       </div>
-    </div>
 
-    <div formGroupName="configuracaoHotel" class="form-group">
-      <label for="idioma">Idioma:</label>
-      <select id="idioma" formControlName="idioma">
-        <option value="pt-BR">Português (BR)</option>
-        <option value="en-US">Inglês</option>
-        <option value="es-ES">Espanhol</option>
-        <option value="fr-FR">Francês</option>
-      </select>
-    </div>
+      <div class="subsection-title">Contato</div>
+      <div formGroupName="contato">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input id="email" formControlName="email" type="email" />
+        </div>
 
-    <button type="submit" class="btn-save" [disabled]="hotelForm.invalid">
-      Salvar
-    </button>
-  </form>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" formControlName="whatsapp" type="text" />
+        </div>
+      </div>
 
-  <p *ngIf="sucesso" class="success-message">{{ sucesso }}</p>
-  <p *ngIf="erro" class="error-message">{{ erro }}</p>
+      <div class="subsection-title">Configuração do Hotel</div>
+      <div formGroupName="configuracaoHotel">
+
+        <div class="form-group">
+          <label for="idioma">Idioma</label>
+          <select id="idioma" formControlName="idioma">
+            <option value="pt-BR">Português (BR)</option>
+            <option value="en-US">Inglês</option>
+            <option value="es-ES">Espanhol</option>
+            <option value="fr-FR">Francês</option>
+          </select>
+        </div>
+
+      </div>
+
+      <button class="btn-primary" type="submit" [disabled]="hotelForm.invalid">
+        Cadastrar
+      </button>
+
+    </form>
+
+    <p *ngIf="sucesso" class="success-message">{{ sucesso }}</p>
+    <p *ngIf="erro" class="error-message">{{ erro }}</p>
+
+  </div>
+
 </div>
