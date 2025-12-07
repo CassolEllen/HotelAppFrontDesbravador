@@ -3,7 +3,7 @@ import { LoginComponent } from './login/login';
 import { HotelListComponent } from './hotel-list/hotel-list';
 import { DashboardComponent } from './dashboard/dashboard';
 import { authGuard } from './guards/auth.guard';
-import { UsuarioForm } from './usuario/usuario-form';
+import { UsuarioFormComponent } from './usuario/usuario-form';
 import { UsuarioList } from './usuario/usuario-list';
 import { FormulariosListComponent } from './formularios-list/formularios-list';
 import { FormulariosCreate } from './formularios-create/formularios-create';
@@ -24,8 +24,8 @@ export const routes: Routes = [
   { path: 'hoteis/editar/:id', component: HotelEditComponent, canActivate: [authGuard] },
 
   { path: 'usuarios', component: UsuarioList },
-  { path: 'usuarios/novo', component: UsuarioForm },
-  { path: 'usuarios/editar/:id', component: UsuarioForm },
+  { path: 'usuarios/novo', component: UsuarioFormComponent },
+  { path: 'usuarios/editar/:id', component: UsuarioFormComponent },
 
   { path: 'formularios', component: FormulariosListComponent },
   { path: 'formularios/novo', component: FormulariosCreate },

@@ -13,6 +13,7 @@ import { UsuarioService } from '../services/usuario-service';
 export class UsuarioList implements OnInit {
 
   usuarios: any[] = [];
+  carregando = true;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -24,12 +25,15 @@ export class UsuarioList implements OnInit {
   }
 
   carregarUsuarios() {
-    this.usuarioService.getUsuarios().subscribe({
+    this.usuarioService.buscarUsuarios().subscribe({
       next: (dados: any) => {
-        console.log("Usuários carregados:", dados);
         this.usuarios = dados;
+        this.carregando = false;
       },
-      error: (err) => console.error('Erro ao carregar usuários:', err),
+      error: () => {
+        alert('Erro ao carregar usuários.');
+        this.carregando = false;
+      }
     });
   }
 
@@ -42,14 +46,14 @@ export class UsuarioList implements OnInit {
   }
 
   deleteUsuario(id: string) {
-    if (confirm('Tem certeza que deseja excluir este usuário?')) {
-      this.usuarioService.deleteUsuario(id).subscribe({
-        next: () => {
-          alert('Usuário excluído com sucesso!');
-          this.carregarUsuarios();
-        },
-        error: (err) => console.error('Erro ao excluir usuário:', err),
-      });
-    }
-  }
+  if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
+
+  this.usuarioService.deletarUsuario(id).subscribe({
+    next: () => {
+      alert('Usuário excluído com sucesso!');
+      this.carregarUsuarios();
+    },
+    error: () => alert('Erro ao excluir usuário.')
+  });
+}
 }

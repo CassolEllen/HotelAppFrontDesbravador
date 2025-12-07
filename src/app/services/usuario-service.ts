@@ -1,31 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class UsuarioService {
-  private apiUrl = `${environment.apiUrl}/Usuario`;
 
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'https://localhost:7092/api/Usuario';
 
-  getUsuarios(): Observable<any> {
+  constructor(private http: HttpClient) { }
+
+  // GET - Buscar todos
+  buscarUsuarios(): Observable<any> {
     return this.http.get(`${this.apiUrl}/BuscarUsuarios`);
   }
 
-  getUsuarioById(id: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/BuscarUsuarioPorId?id=${id}`, {});
+  // POST - Buscar por ID
+  buscarUsuarioPorId(id: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/BuscarUsuarioPorId/${id}`, {});
   }
 
-  createUsuario(usuario: any): Observable<any> {
+  // POST - Criar
+  criarUsuario(usuario: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/CriarUsuario`, usuario);
   }
 
-  updateUsuario(id: string, usuario: any): Observable<any> {
+  // PUT - Atualizar
+  atualizarUsuario(id: string, usuario: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/AtualizarUsuario/${id}`, usuario);
   }
 
-  deleteUsuario(id: string): Observable<any> {
+  // DELETE - Deletar
+  deletarUsuario(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/DeletarUsuario/${id}`);
   }
 }

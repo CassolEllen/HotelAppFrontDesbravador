@@ -1,37 +1,67 @@
-<div class="form-container">
-  <h2>Cadastro de Usuário</h2>
+<div class="page-container">
 
-  <form (ngSubmit)="salvar()">
-    <label>Nome:</label>
-    <input [(ngModel)]="usuario.nome" name="nome" placeholder="Ex: João Silva" />
+  <div class="header">
+    <h1>Cadastrar Usuário</h1>
+    <div class="subtitle">Preencha os dados para adicionar um novo usuário ao sistema</div>
+  </div>
 
-    <label>Senha:</label>
-    <input [(ngModel)]="usuario.senha" name="senha" placeholder="Digite a senha" type="password" />
+  <div class="card">
+    <form [formGroup]="form" (ngSubmit)="salvar()">
 
-    <hr />
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" formControlName="nome" type="text" />
+      </div>
 
-    <h3>Contato</h3>
-    <label>Email:</label>
-    <input [(ngModel)]="usuario.contato.email" name="email" placeholder="email@exemplo.com" />
+      <div formGroupName="contato">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input id="email" formControlName="email" type="email" />
+        </div>
 
-    <label>WhatsApp:</label>
-    <input [(ngModel)]="usuario.contato.whatsapp" name="whatsapp" placeholder="(51) 99999-9999" />
+        <div class="form-group">
+          <label for="whatsapp">Whatsapp</label>
+          <input id="whatsapp" formControlName="whatsapp" type="text" />
+        </div>
+      </div>
 
-    <hr />
+      <div class="subsection-title">Credenciais</div>
 
-    <h3>Permissões</h3>
-    <label>Papel:</label>
-    <select [(ngModel)]="usuario.papel" name="papel">
-      <option [ngValue]="0">Gerente</option>
-      <option [ngValue]="1">Funcionário</option>
-    </select>
-  
-    <label>Tipo de Usuário:</label>
-    <select [(ngModel)]="usuario.tipoUsuario" name="tipoUsuario">
-      <option [ngValue]="0">Admin</option>
-      <option [ngValue]="1">User</option>
-    </select>
+      <div formGroupName="credenciais">
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input id="senha" formControlName="senha" type="password" />
+        </div>
 
-    <button type="submit">Salvar</button>
-  </form>
+        <div class="form-group">
+          <label for="confirmarSenha">Confirmar Senha</label>
+          <input id="confirmarSenha" formControlName="confirmarSenha" type="password" />
+        </div>
+      </div>
+
+      <!-- NOVO: Seleção de Papel -->
+      <div class="form-group">
+        <label for="papel">Papel</label>
+        <select id="papel" formControlName="papel">
+          <option [value]="0">Funcionário</option>
+          <option [value]="1">Gerente</option>
+        </select>
+      </div>
+
+      <!-- NOVO: Tipo de Usuário -->
+      <div class="form-group">
+        <label for="tipoUsuario">Tipo de Usuário</label>
+        <select id="tipoUsuario" formControlName="tipoUsuario">
+          <option [value]="0">Admin</option>
+          <option [value]="1">User</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" type="submit">
+        {{ editando ? 'Salvar Alterações' : 'Cadastrar' }}
+      </button>
+
+    </form>
+  </div>
+
 </div>

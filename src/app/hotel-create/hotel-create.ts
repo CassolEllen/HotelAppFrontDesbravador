@@ -9,6 +9,7 @@ import { HotelService } from '../services/hotel-service';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './hotel-create.html',
+  styleUrls: ['./hotel-create.css']
 })
 export class HotelCreateComponent {
   hotelForm: FormGroup;

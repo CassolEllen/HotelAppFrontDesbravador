@@ -1,31 +1,40 @@
-<div class="container">
+<div class="lista-container">
   <h2>Lista de Usuários</h2>
 
-  <button class="add-btn" (click)="novoUsuario()">➕Cadastrar Novo Usuário</button>
+  <div class="card">
 
-  <table *ngIf="usuarios.length > 0" class="styled-table">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Papel</th>
-        <th>Hotel</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let usuario of usuarios">
-        <td>{{ usuario.nome }}</td>
-        <td>{{ usuario.contato?.email }}</td>
-        <td>{{ usuario.papel }}</td>
-        <td>{{ usuario.hotel?.nome }}</td>
-        <td>
-          <button class="edit-btn" (click)="editarUsuario(usuario.id)">Editar</button>
-          <button class="delete-btn" (click)="deleteUsuario(usuario.id)">Excluir</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="top-actions">
+      <button class="novo-btn" (click)="novoUsuario()">+ Novo Usuário</button>
+    </div>
 
-  <div *ngIf="usuarios.length === 0" class="no-data">Nenhum usuário cadastrado.</div>
+    <table *ngIf="usuarios.length > 0" class="styled-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Papel</th>
+          <th>Hotel</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.contato?.email }}</td>
+          <td>{{ usuario.papel }}</td>
+          <td>{{ usuario.hotel?.nome }}</td>
+          <td>
+            <button class="edit-btn" (click)="editarUsuario(usuario.id)">Editar</button>
+            <button class="del-btn" (click)="deleteUsuario(usuario.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="usuarios.length === 0" class="no-data">
+      Nenhum usuário cadastrado.
+    </div>
+
+  </div>
 </div>
