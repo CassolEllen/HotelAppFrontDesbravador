@@ -1,0 +1,19 @@
+<div *ngIf="loading" class="loading">Carregando formulário...</div>
+
+<div *ngIf="!loading && questionario">
+  <h1>{{ questionario.titulo }}</h1>
+  <form (ngSubmit)="enviarRespostas()" #form="ngForm">
+
+    <div *ngFor="let resposta of dadosFormulario.Respostas; let i = index">
+      
+      <h3>{{ i + 1 }}. {{ questionario.perguntas[i].texto }}</h3>
+      
+      <label>Sua resposta:</label>
+      <input type="text" 
+             [(ngModel)]="resposta.Texto" 
+             name="texto_pergunta_{{i}}" required>
+    </div>
+
+    <button type="submit">Enviar Formulário</button>
+  </form>
+</div>
