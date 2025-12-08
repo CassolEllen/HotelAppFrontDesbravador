@@ -37,29 +37,62 @@ export class HotelEditComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.carregarHotel(id);
-      this.carregarQuestionarios();
+      // Carrega primeiro as opções (questionários) e depois o hotel
+      this.carregarDadosParaEdicao(id);
     }
   }
 
-  carregarHotel(id: string) {
-    this.loading = true;
-
-    this.hotelService.getHotelById(id).subscribe({
-      next: (res) => {
-        this.hotel = res;
-        this.loading = false;
-      },
-      error: () => {
-        this.loading = false;
-      }
-    });
+  /**
+   * Função de comparação obrigatória para [compareWith].
+   * Garante que o Angular compare corretamente o GUID salvo (c1) com os IDs da lista (c2).
+   */
+  compareFn(c1: any, c2: any): boolean {
+    // Retorna true apenas se ambos forem exatamente o mesmo valor ou ambos nulos.
+    // Isso é crucial para GUIDs e a opção [ngValue]="null".
+    if (c1 === null && c2 === null) {
+      return true;
+    }
+    // Compara os IDs como strings
+    return c1 === c2;
   }
 
-  carregarQuestionarios() {
+  /**
+   * Garante que a lista de questionários (opções do select) seja carregada primeiro,
+   * e só então carrega os dados do hotel para correta vinculação do ID selecionado.
+   */
+  carregarDadosParaEdicao(id: string) {
+    this.loading = true;
+
+    // 1. Carregar Questionários (Options do Select)
     this.questionarioService.listar().subscribe({
-      next: (res) => this.questionarios = res,
-      error: (err) => console.error('Erro ao carregar questionarios:', err)
+      next: (questionariosRes) => {
+        this.questionarios = questionariosRes;
+        
+        // 2. Carregar o Hotel (Onde está o ID salvo)
+        this.hotelService.getHotelById(id).subscribe({
+          next: (hotelRes) => {
+            
+            // 3. Aplica a correção de tipagem/valor (null, string vazia, GUID zerado)
+            const questionarioId = hotelRes.questionarioSelecionadoId;
+
+            if (!questionarioId || questionarioId === '00000000-0000-0000-0000-000000000000') {
+              hotelRes.questionarioSelecionadoId = null;
+            } 
+            // Se for um GUID válido, ele será mantido como string.
+
+            this.hotel = hotelRes;
+            this.loading = false;
+          },
+          error: (err) => {
+            console.error('Erro ao carregar hotel:', err);
+            this.loading = false;
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Erro ao carregar questionários:', err);
+        this.loading = false;
+      }
     });
   }
 
@@ -72,7 +105,6 @@ export class HotelEditComponent implements OnInit {
     });
   }
 
-  // ✅ Adicionado para corrigir erro no template
   voltar() {
     this.router.navigate(['/hoteis']);
   }

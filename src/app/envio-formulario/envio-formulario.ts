@@ -11,7 +11,7 @@ enum TipoPergunta {
   MultiplaEscolha = 2, // Usado para Checkboxes (múltiplas respostas)
   Nota = 3,
   UnicaEscolha = 4, // Usado para Radio Buttons ou Select (uma resposta)
-  Checkbox = 5, // Mantido, mas se MultiplaEscolha=2 for o único usado, pode ser removido
+  Checkbox = 5, 
   Data = 6
 }
 
@@ -112,42 +112,76 @@ export class EnvioFormularioComponent implements OnInit {
   }
 
   /**
-   * Prepara o payload de envio, mapeando as respostas para a estrutura de backend esperada.
+   * Prepara o payload de envio, mapeando as respostas E VALIDANDO os campos obrigatórios.
    */
   enviar() {
     if (!this.questionario || !this.questionario.perguntas) {
         alert('Nenhum questionário para enviar.');
         return;
     }
+
+    // 1. VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS
+    let todasRespondidas = true;
+    for (const p of this.questionario.perguntas) {
+        if (p.tipo === this.TipoPergunta.Texto || p.tipo === this.TipoPergunta.Data) {
+            // Valida Textarea ou Input Date: deve ter conteúdo
+            if (!p.respostaTexto || String(p.respostaTexto).trim() === '') {
+                todasRespondidas = false;
+                break;
+            }
+        } else if (p.tipo === this.TipoPergunta.Nota) {
+            // Valida Nota: deve ser um número não nulo/vazio
+            if (p.respostaNota === null || p.respostaNota === undefined || String(p.respostaNota).trim() === '') {
+                todasRespondidas = false;
+                break;
+            }
+        } else if (p.tipo === this.TipoPergunta.UnicaEscolha) {
+            // Valida Escolha Única: deve ter uma opção selecionada
+            if (p.opcaoSelecionada === null || p.opcaoSelecionada === undefined) {
+                todasRespondidas = false;
+                break;
+            }
+        } else if (p.tipo === this.TipoPergunta.MultiplaEscolha || p.tipo === this.TipoPergunta.Checkbox) {
+            // Valida Múltipla Escolha: o array de seleção não pode estar vazio
+            if (!p.multiplasOpcoesSelecionadas || p.multiplasOpcoesSelecionadas.length === 0) {
+                todasRespondidas = false;
+                break;
+            }
+        }
+    }
+
+    if (!todasRespondidas) {
+        alert('🛑 Por favor, preencha todas as perguntas obrigatórias.');
+        return;
+    }
     
-    // Mapeamento das respostas para o formato do Backend
+    // 2. MONTAGEM DO PAYLOAD
     const payload = {
       questionarioId: this.questionarioId,
       respostas: this.questionario.perguntas.map((p: any) => {
           
-          // Mapeamento que garante que apenas a propriedade relevante seja preenchida
           const resposta: any = {
               perguntaId: p.id,
               hospedeId: this.hospedeId
           };
           
           switch (p.tipo) {
-              case TipoPergunta.Texto:
-              case TipoPergunta.Data:
+              case this.TipoPergunta.Texto:
+              case this.TipoPergunta.Data:
                   resposta.texto = p.respostaTexto ?? null;
                   break;
-              case TipoPergunta.Nota:
-                  resposta.nota = p.respostaNota ?? null;
+              case this.TipoPergunta.Nota:
+                  // Converte para Number, garantindo que o backend receba o tipo correto
+                  resposta.nota = p.respostaNota ? Number(p.respostaNota) : null; 
                   break;
-              case TipoPergunta.UnicaEscolha:
+              case this.TipoPergunta.UnicaEscolha:
                   resposta.opcaoSelecionada = p.opcaoSelecionada ?? null;
                   break;
-              case TipoPergunta.MultiplaEscolha:
-              case TipoPergunta.Checkbox:
+              case this.TipoPergunta.MultiplaEscolha:
+              case this.TipoPergunta.Checkbox:
                   resposta.multiplasOpcoesSelecionadas = p.multiplasOpcoesSelecionadas ?? [];
                   break;
               default:
-                  // Caso um tipo não esperado seja encontrado, apenas envia ID da pergunta
                   break;
           }
           
@@ -155,18 +189,19 @@ export class EnvioFormularioComponent implements OnInit {
       })
     };
 
-    console.log("Payload de envio:", payload); // Para debug
+    // 3. ENVIO DA REQUISIÇÃO HTTP
+    console.log("Payload de envio:", payload); 
 
     this.http
       .post(`${environment.apiUrl}/DadosFormulario/EnvioFormulario`, payload)
       .subscribe({
         next: () => {
           alert('Avaliação enviada com sucesso! Obrigado 😊');
-          // Redirecionar ou mostrar mensagem final
+          // Lógica de redirecionamento ou sucesso aqui
         },
         error: (err) => {
           console.error("Erro no envio:", err);
-          alert('Erro ao enviar o formulário.');
+          alert('Erro ao enviar o formulário. Por favor, tente novamente.');
         }
       });
   }

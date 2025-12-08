@@ -44,10 +44,13 @@
 
       <div class="form-group">
         <label>Questionário vinculado</label>
-        <select [(ngModel)]="hotel.questionarioSelecionadoId" name="questionarioSelecionadoId">
-          <option [ngValue]="null">Nenhum</option>
-          <option *ngFor="let q of questionarios" [ngValue]="q.id">{{ q.titulo }}</option>
-        </select>
+          <select 
+            [(ngModel)]="hotel.questionarioSelecionadoId" 
+            name="questionarioSelecionadoId"
+            [compareWith]="compareFn"> <option [ngValue]="null">Nenhum</option> 
+              <option *ngFor="let q of questionarios" [ngValue]="q.id">{{ q.titulo }}</option>
+              
+          </select>
       </div>
 
       <button class="btn-primary" type="submit">Salvar alterações</button>
