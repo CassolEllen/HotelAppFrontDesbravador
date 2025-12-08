@@ -9,8 +9,17 @@
       <button class="logout-btn">Logout</button>
     </header>
 
-    <section class="stats-grid">
+    <section class="quick-actions-card mb-30">
+      <h2 class="section-title">Acessos Rápidos</h2>
+      <div class="button-grid">
+        <div class="action-btn" routerLink="/hospedes">Hóspedes</div>
+        <div class="action-btn" routerLink="/hoteis">Hotéis</div>
+        <div class="action-btn" routerLink="/formularios">Formulários</div>
+        <div class="action-btn" routerLink="/usuarios">Usuários</div>
+      </div>
+    </section>
 
+    <section class="stats-grid">
       <div class="stat-card blue-light-border">
         <div class="stat-content">
           <h3>Hóspedes Hoje</h3>
@@ -34,11 +43,10 @@
           <span class="detail text-gray">Taxa de ocupação: 82%</span>
         </div>
       </div>
-
     </section>
 
     <div class="main-content-grid">
-
+      
       <section class="chart-card">
         <h2 class="section-title">Ocupação Mensal</h2>
         <div class="chart-container">
@@ -89,16 +97,6 @@
             <p><strong>Formulário</strong> de satisfação preenchido.</p>
           </li>
         </ul>
-      </section>
-
-      <section class="quick-actions-card full-width">
-        <h2 class="section-title">Acessos Rápidos</h2>
-        <div class="button-grid">
-          <div class="action-btn" routerLink="/hospedes">Hóspedes</div>
-          <div class="action-btn" routerLink="/hoteis">Hotéis</div>
-          <div class="action-btn" routerLink="/formularios">Formulários</div>
-          <div class="action-btn" routerLink="/usuarios">Usuários</div>
-        </div>
       </section>
 
     </div>

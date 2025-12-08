@@ -1,20 +1,34 @@
-/* Variáveis de Cores (Azul, conforme solicitado) */
+/* =========================================
+   VARIÁVEIS DE CORES (PALETA AZUL/MODERNA)
+   ========================================= */
 :root {
-  --color-primary: #1e40af; /* Azul Escuro (Textos, botões) */
-  --color-secondary: #3b82f6; /* Azul Médio (Detalhes) */
-  --color-bg-light: #f0f4ff; /* Fundo Leve/Azulado */
-  --color-card-bg: #ffffff; /* Fundo dos Cards */
-  --color-text-dark: #1f2937; /* Texto Escuro */
-  --color-text-light: #6b7280; /* Texto Cinza */
-  --color-indigo: #4338ca; /* Roxo/Índigo para destaque */
-  --color-green: #10b981; /* Verde */
-  --color-orange: #f59e0b; /* Laranja */
-  --color-purple: #8b5cf6; /* Roxo */
+  --color-primary: #1e40af;       /* Azul Escuro (Textos principais, botões) */
+  --color-secondary: #3b82f6;     /* Azul Médio (Detalhes, gráficos) */
+  --color-bg-light: #f0f4ff;      /* Fundo da página (Azulado bem leve) */
+  --color-card-bg: #ffffff;       /* Fundo Branco dos Cards */
+  --color-text-dark: #1f2937;     /* Texto Escuro (Quase preto) */
+  --color-text-light: #6b7280;    /* Texto Cinza (Legendas) */
+  
+  /* Cores de Status/Destaque */
+  --color-indigo: #4338ca;
+  --color-green: #10b981;
+  --color-orange: #f59e0b;
+  --color-purple: #8b5cf6;
 }
 
-/* ------------------------------------- */
-/* 1. BASE E CONTAINER */
-/* ------------------------------------- */
+/* =========================================
+   RESET E ESTRUTURA BASE
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
 .dashboard-wrapper {
   display: flex;
@@ -23,34 +37,32 @@
   min-height: 100vh;
   padding: 40px 20px;
   background-color: var(--color-bg-light);
-  font-family: Arial, sans-serif;
 }
 
 .dashboard-card-modern {
   width: 100%;
   max-width: 1300px;
   background: var(--color-card-bg);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  padding: 40px; /* Espaçamento interno generoso */
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06); /* Sombra suave e luxuosa */
 }
 
-/* ------------------------------------- */
-/* 2. CABEÇALHO */
-/* ------------------------------------- */
-
+/* =========================================
+   1. CABEÇALHO (HEADER)
+   ========================================= */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
+  margin-bottom: 30px; /* Separa o título do menu rápido */
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--color-primary);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text-dark);
+  margin-bottom: 5px;
 }
 
 .subtitle {
@@ -59,300 +71,254 @@
 }
 
 .logout-btn {
-  padding: 10px 20px;
+  padding: 10px 24px;
   background: var(--color-primary);
   color: #fff;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
-  background: #0f1f59;
+  background: #152c80;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
 }
 
-/* ------------------------------------- */
-/* 3. GRID DE ESTATÍSTICAS (3 COLUNAS) */
-/* ------------------------------------- */
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  margin-bottom: 30px;
-}
-
-.stat-card {
-  background: var(--color-bg-light);
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
-  border: 1px solid transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.blue-light-border {
-    border: 1px solid #c7d2fe;
-}
-
-.stat-card h3 {
-  font-size: 14px;
-  color: var(--color-text-dark);
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.number {
-  font-size: 38px;
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: 4px;
-}
-
-.detail {
-  font-size: 13px;
-}
-
-.text-indigo { color: var(--color-indigo); }
-.text-orange { color: var(--color-orange); }
-.text-gray { color: var(--color-text-light); }
-
-
-/* ------------------------------------- */
-/* 4. GRID DE CONTEÚDO PRINCIPAL (GRÁFICOS E ATIVIDADES) */
-/* ------------------------------------- */
-
-.main-content-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-    grid-template-areas: 
-        "chart1 chart2 activity activity"
-        "quick quick quick quick";
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.chart-card, .activity-card {
-    background: var(--color-card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e5e7eb;
+/* =========================================
+   2. ACESSOS RÁPIDOS (O SEU PEDIDO)
+   ========================================= */
+.quick-actions-card {
+  background: var(--color-card-bg);
+  padding: 25px 30px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  
+  /* --- A CORREÇÃO DE ESPAÇAMENTO ESTÁ AQUI --- */
+  margin-bottom: 50px; /* Margem grande para separar das estatísticas */
+  /* ------------------------------------------- */
+  
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02); /* Sombra bem leve para não pesar */
 }
 
 .section-title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: var(--color-text-dark);
-  margin-bottom: 15px;
-}
-
-/* Posicionamento dos Cards */
-.chart-card:nth-child(1) { grid-area: chart1; }
-.chart-card:nth-child(2) { grid-area: chart2; }
-.activity-card:nth-child(3) { grid-area: activity; }
-
-
-/* --- Estilo de Gráfico (Simulado) --- */
-.chart-container {
-    padding-top: 20px;
-}
-
-.chart-placeholder {
-    height: 180px;
-    position: relative;
-    padding: 10px 0 0 40px; 
-    border-left: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.chart-area {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-/* Simulação da Linha do Gráfico */
-.chart-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60%; /* Altura simulada */
-    background: linear-gradient(to top, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 100%);
-    clip-path: polygon(0% 100%, 10% 70%, 30% 80%, 50% 50%, 70% 60%, 90% 40%, 100% 50%, 100% 100%);
-    border-top: 2px solid var(--color-secondary);
-}
-
-.chart-axis-y {
-    position: absolute;
-    left: -45px;
-    top: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--color-text-light);
-    width: 35px;
-    text-align: right;
-}
-
-.chart-caption {
-    font-size: 13px;
-    color: var(--color-text-light);
-    margin-top: 15px;
-    text-align: center;
-}
-
-/* --- LISTA DE ATIVIDADES --- */
-
-/* Base para a lista */
-.activity-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.activity-item {
-  display: flex;
-  align-items: flex-start;
-  padding: 15px; /* Aumentei o padding para o fundo ficar visível */
-  border-radius: 12px; /* Arredondamento para o fundo do item */
-  margin-bottom: 12px;
-  border: 1px solid transparent; /* Adiciona uma borda sutil ou transparente para consistência */
-}
-
-/* ------------------------------------------- */
-/* NOVOS FUNDOS COM TRANSPARÊNCIA (Soft Fill) */
-/* ------------------------------------------- */
-
-.activity-item:nth-child(1) { 
-    /* Cor Verde (Success) com 10% de opacidade */
-    background-color: rgba(16, 185, 129, 0.1); 
-    border-left: 4px solid var(--color-green);
-}
-.activity-item:nth-child(2) { 
-    /* Cor Azul (Info) com 10% de opacidade */
-    background-color: rgba(59, 130, 246, 0.1); 
-    border-left: 4px solid var(--color-secondary);
-}
-.activity-item:nth-child(3) { 
-    /* Cor Laranja (Warning) com 10% de opacidade */
-    background-color: rgba(245, 158, 11, 0.1); 
-    border-left: 4px solid var(--color-orange);
-}
-.activity-item:nth-child(4) { 
-    /* Cor Roxo (Purple) com 10% de opacidade */
-    background-color: rgba(200, 23, 216, 0.1); 
-    border-left: 4px solid var(--color-purple);
-}
-
-/* Estilo do Ponto (Dot) */
-.dot {
-  min-width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 12px;
-  margin-top: 5px; 
-}
-
-/* Cores dos Pontos */
-.green { background: var(--color-green); }
-.blue { background: var(--color-secondary); }
-.orange { background: var(--color-orange); }
-.pink { background: var(--color-purple); } 
-
-.activity-item p {
-    font-size: 14px;
-    color: var(--color-text-dark);
-    line-height: 1.4;
-}
-/* ------------------------------------- */
-/* 5. ACESSOS RÁPIDOS */
-/* ------------------------------------- */
-
-.quick-actions-card {
-  grid-area: quick;
-  background: var(--color-card-bg);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  margin-bottom: 20px;
 }
 
 .button-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-top: 15px;
+  gap: 20px;
 }
 
-
 .action-btn {
-  background: var(--color-bg-light);
-  padding: 15px 10px;
+  background: #f8fafc; /* Fundo levemente cinza/azul */
+  padding: 16px;
   text-align: center;
   border-radius: 12px;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text-dark);
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: 0.2s ease;
-  border: 1px solid #e0e7ff;
-  font-size: 14px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+  font-size: 15px;
 }
 
 .action-btn:hover {
-  transform: translateY(-2px);
-  background: #dce7fa;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transform: translateY(-3px); /* Efeito de flutuar ao passar o mouse */
+  border-color: var(--color-secondary);
+  color: var(--color-primary);
+  background: #eff6ff; /* Fundo azul bem clarinho no hover */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
-/* ------------------------------------- */
-/* 6. RESPONSIVIDADE */
-/* ------------------------------------- */
+/* =========================================
+   3. GRID DE ESTATÍSTICAS (KPIs)
+   ========================================= */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-bottom: 40px; /* Espaço antes dos gráficos */
+}
 
+.stat-card {
+  background: var(--color-card-bg);
+  padding: 25px;
+  border-radius: 16px;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Borda colorida sutil */
+.blue-light-border {
+  border: 1px solid #c7d2fe;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card h3 {
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card .number {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--color-text-dark);
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.stat-card .detail {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Cores de texto auxiliares */
+.text-indigo { color: var(--color-indigo); }
+.text-orange { color: var(--color-orange); }
+.text-gray   { color: var(--color-text-light); }
+
+/* =========================================
+   4. GRID DE CONTEÚDO (GRÁFICOS E LISTA)
+   ========================================= */
+.main-content-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Layout: 2 colunas gráficos, 2 colunas atividades */
+  grid-template-areas: "chart1 chart2 activity activity";
+  gap: 25px;
+}
+
+.chart-card, .activity-card {
+  background: var(--color-card-bg);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Posicionamento via Grid Area */
+.chart-card:nth-child(1) { grid-area: chart1; }
+.chart-card:nth-child(2) { grid-area: chart2; }
+.activity-card:nth-child(3) { grid-area: activity; }
+
+/* --- Estilos dos Gráficos (Simulação CSS) --- */
+.chart-container {
+  padding-top: 10px;
+}
+.chart-placeholder {
+  height: 160px;
+  position: relative;
+  border-left: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  margin-left: 30px; /* Espaço para o eixo Y */
+}
+.chart-line {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 60%;
+  background: linear-gradient(to top, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 100%);
+  clip-path: polygon(0% 100%, 15% 60%, 35% 80%, 55% 40%, 75% 55%, 100% 20%, 100% 100%);
+  border-top: 2px solid var(--color-secondary);
+}
+.chart-axis-y {
+  position: absolute;
+  left: -35px; top: 0; height: 100%;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-size: 11px; color: var(--color-text-light);
+  width: 30px; text-align: right;
+}
+.chart-caption {
+  font-size: 12px; color: var(--color-text-light);
+  margin-top: 15px; text-align: center;
+}
+
+/* =========================================
+   5. LISTA DE ATIVIDADES (COM FUNDO SUAVE)
+   ========================================= */
+.activity-list {
+  list-style: none;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center; /* Centralizado verticalmente */
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: background 0.2s;
+}
+
+/* Cores de fundo suaves para cada item */
+.activity-item:nth-child(1) { background-color: rgba(16, 185, 129, 0.08); } /* Verde */
+.activity-item:nth-child(2) { background-color: rgba(59, 130, 246, 0.08); } /* Azul */
+.activity-item:nth-child(3) { background-color: rgba(245, 158, 11, 0.08); } /* Laranja */
+.activity-item:nth-child(4) { background-color: rgba(139, 92, 246, 0.08); } /* Roxo */
+
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 15px; flex-shrink: 0;
+}
+.dot.green { background: var(--color-green); }
+.dot.blue { background: var(--color-secondary); }
+.dot.orange { background: var(--color-orange); }
+.dot.purple { background: var(--color-purple); }
+
+.activity-item p {
+  font-size: 14px;
+  color: var(--color-text-dark);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* =========================================
+   6. RESPONSIVIDADE
+   ========================================= */
 @media (max-width: 1200px) {
-    .main-content-grid {
-        grid-template-columns: 1fr 1fr; /* 2 colunas */
-        grid-template-areas: 
-            "chart1 chart2"
-            "activity activity"
-            "quick quick";
-    }
+  .main-content-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "chart1 chart2"
+      "activity activity";
+  }
 }
 
 @media (max-width: 900px) {
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Cards ficam um embaixo do outro */
+  }
+  .button-grid {
+    grid-template-columns: 1fr 1fr; /* Botões viram 2 colunas */
   }
 }
 
 @media (max-width: 600px) {
+  .dashboard-card-modern { padding: 20px; }
+  
   .main-content-grid {
-    grid-template-columns: 1fr; /* 1 coluna */
+    grid-template-columns: 1fr;
     grid-template-areas: 
-        "chart1"
-        "chart2"
-        "activity"
-        "quick";
+      "chart1"
+      "chart2"
+      "activity";
   }
   
-  .button-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .title {
-    font-size: 24px;
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
   }
   
-  .dashboard-card-modern {
-    padding: 25px;
-  }
+  .logout-btn { width: 100%; }
 }

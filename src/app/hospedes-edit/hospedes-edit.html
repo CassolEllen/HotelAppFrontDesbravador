@@ -1,53 +1,105 @@
 <div class="page-container">
 
+
+
   <div class="header">
+
     <h1>Editar Hóspede</h1>
+
     <p class="subtitle">Atualize os dados do hóspede abaixo</p>
+
   </div>
+
+
 
   <div class="card">
 
+
+
     <div *ngIf="loading" class="loading">Carregando dados...</div>
+
+
 
     <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="salvar()">
 
-      <div class="form-group">
-        <label>Nome *</label>
-        <input type="text" formControlName="nome" />
-      </div>
+
 
       <div class="form-group">
-        <label>Quarto *</label>
-        <input type="text" formControlName="quarto" />
+
+        <label>Nome *</label>
+
+        <input type="text" formControlName="nome" />
+
       </div>
+
+
+
+      <div class="form-group">
+
+        <label>Quarto *</label>
+
+        <input type="text" formControlName="quarto" />
+
+      </div>
+
+
 
       <div formGroupName="configuracaoHospede">
+
         <div class="form-group">
+
             <label>Idioma *</label>
+
             <select formControlName="idioma">
+
                 <option value="pt-BR">Português</option>
+
                 <option value="en-US">Inglês</option>
+
                 <option value="es-ES">Espanhol</option>
+
             </select>
+
         </div>
+
       </div>
+
+
 
       <div formGroupName="contato">
-        <div class="form-group">
-          <label>Email *</label>
-          <input type="email" formControlName="email" />
-        </div>
 
         <div class="form-group">
-          <label>WhatsApp *</label>
-          <input type="text" formControlName="whatsapp" />
+
+          <label>Email *</label>
+
+          <input type="email" formControlName="email" />
+
         </div>
+
+
+
+        <div class="form-group">
+
+          <label>WhatsApp *</label>
+
+          <input type="text" formControlName="whatsapp" />
+
+        </div>
+
       </div>
 
+
+
       <button class="btn-primary" type="submit" [disabled]="form.invalid">
+
         Salvar Alterações
+
       </button>
 
+
+
     </form>
+
   </div>
+
 </div>
