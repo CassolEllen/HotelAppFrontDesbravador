@@ -23,8 +23,6 @@ export class FormulariosCreate {
     { id: 2, label: "Múltipla escolha" },
     { id: 3, label: "Nota" },
     { id: 4, label: "Única escolha" },
-    { id: 5, label: "Checkbox" },
-    { id: 6, label: "Data" }
   ];
 
   constructor(

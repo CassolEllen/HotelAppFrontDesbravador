@@ -1,53 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Experiência</title>
+    <link rel="stylesheet" href="./envio-formulario.css"> 
+</head>
+<body>
+
 <div class="container">
-  <div class="card">
-    <h2>Avaliação de Experiência</h2>
+    <div class="card">
+        <header class="header">
+            <h1 *ngIf="questionario">{{ questionario.titulo || 'Avaliação de Experiência' }}</h1>
+            <h2 *ngIf="!carregando && questionario">Formulário de Avaliação HotelKKKK</h2>
+        </header>
 
-    <div *ngIf="carregando" class="loading">Carregando questionário...</div>
+        <div *ngIf="carregando" class="loading-message">Carregando questionário...</div>
+        <div *ngIf="!questionario && !carregando" class="error-message">Questionário não encontrado.</div>
 
-    <form *ngIf="!carregando && questionario" (ngSubmit)="enviar()">
+        <form *ngIf="questionario" (ngSubmit)="enviar()">
+            
+            <ng-container *ngFor="let pergunta of questionario.perguntas; let i = index">
+                
+                <div class="form-group">
+                    <p class="question-title">{{ i + 1 }}. {{ pergunta.descricao }}</p>
 
-      <h3>{{ questionario.titulo }}</h3>
+                    <div [ngSwitch]="pergunta.tipo">
 
-      <div
-        class="pergunta"
-        *ngFor="let p of questionario.perguntas; let i = index"
-      >
-        <label>{{ i + 1 }}. {{ p.texto }}</label>
+                        <ng-container *ngSwitchCase="TipoPergunta.Texto">
+                            <textarea 
+                                [(ngModel)]="pergunta.respostaTexto" 
+                                name="texto_{{ pergunta.id }}" 
+                                rows="4" 
+                                placeholder="Digite sua resposta aqui..." 
+                                required>
+                            </textarea>
+                        </ng-container>
+                        
+                        <ng-container *ngSwitchCase="TipoPergunta.Data">
+                            <input 
+                                type="date"
+                                [(ngModel)]="pergunta.respostaTexto" 
+                                name="data_{{ pergunta.id }}" 
+                                required>
+                        </ng-container>
 
-        <!-- Pergunta tipo texto -->
-        <textarea
-          *ngIf="p.tipo === 'texto'"
-          [(ngModel)]="p.respostaTexto"
-          name="texto{{ p.id }}"
-          rows="3"
-        ></textarea>
+                        <ng-container *ngSwitchCase="TipoPergunta.Nota">
+                            <div class="rating-input">
+                                <label>Nota ({{ pergunta.notaMin }} a {{ pergunta.notaMax }}):</label>
+                                <input 
+                                    type="number" 
+                                    [(ngModel)]="pergunta.respostaNota" 
+                                    name="nota_{{ pergunta.id }}" 
+                                    min="{{ pergunta.notaMin }}" 
+                                    max="{{ pergunta.notaMax }}" 
+                                    required>
+                            </div>
+                        </ng-container>
+                        
+                        <ng-container *ngSwitchCase="TipoPergunta.UnicaEscolha">
+                             <div class="radio-group">
+                                <label *ngFor="let opcao of pergunta.opcoes" class="radio-label">
+                                    <input 
+                                        type="radio" 
+                                        [(ngModel)]="pergunta.opcaoSelecionada"
+                                        [value]="opcao"
+                                        name="unica_{{ pergunta.id }}"
+                                        required>
+                                    {{ opcao }}
+                                </label>
+                            </div>
+                        </ng-container>
 
-        <!-- Pergunta tipo nota -->
-        <input
-          *ngIf="p.tipo === 'nota'"
-          type="number"
-          min="0"
-          max="10"
-          [(ngModel)]="p.respostaNota"
-          name="nota{{ p.id }}"
-        />
+                        <ng-container *ngSwitchCase="TipoPergunta.MultiplaEscolha">
+                            <div class="checkbox-group">
+                                <label *ngFor="let opcao of pergunta.opcoes" class="checkbox-label">
+                                    <input 
+                                        type="checkbox" 
+                                        [checked]="pergunta.multiplasOpcoesSelecionadas?.includes(opcao)"
+                                        (change)="toggleOpcao(pergunta, opcao, $event.target.checked)"
+                                        name="multipla_{{ pergunta.id }}"
+                                        >
+                                    {{ opcao }}
+                                </label>
+                            </div>
+                        </ng-container>
+                        
+                        <ng-container *ngSwitchDefault>
+                            <p class="error-message">Tipo de pergunta não suportado (Tipo: {{ pergunta.tipo }}).</p>
+                        </ng-container>
+                        
+                    </div>
+                </div>
+                <hr class="separator">
+            </ng-container>
 
-        <!-- Pergunta com alternativas únicas -->
-        <select
-          *ngIf="p.tipo === 'alternativa'"
-          [(ngModel)]="p.opcaoSelecionada"
-          name="alternativa{{ p.id }}"
-        >
-          <option value="">Selecione...</option>
-          <option *ngFor="let o of p.opcoes" [value]="o">{{ o }}</option>
-        </select>
-      </div>
-
-      <button type="submit" class="btn-enviar">Enviar Avaliação</button>
-    </form>
-
-    <div *ngIf="!carregando && !questionario">
-      <p>Nenhum questionário encontrado.</p>
+            <button type="submit" class="btn-primary" [disabled]="!questionario">Enviar Avaliação</button>
+        </form>
     </div>
-  </div>
 </div>
+
+</body>
+</html>
