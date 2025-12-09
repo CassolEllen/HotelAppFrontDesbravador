@@ -62,7 +62,7 @@ export class HospedeService {
     return this.http.post(
       this.checkoutUrl,
       { hospedeId },
-      this.getAuthHeaders()  // <-- token agora enviado corretamente
+      this.getAuthHeaders()  
     );
   }
 }

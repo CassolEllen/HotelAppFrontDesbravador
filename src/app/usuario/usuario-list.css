@@ -6,23 +6,22 @@
   margin-top: 30px;
 }
 
-/* Card central branco com sombra */
 .lista-container .card {
-  width: 900px; /* mesmo tamanho do card dos hotéis */
+  width: 900px; 
   background: white;
   border-radius: 16px;
   padding: 30px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 
-/* Título centralizado */
+
 h2 {
   text-align: center;
   font-size: 28px;
   margin-bottom: 10px;
 }
 
-/* Botão alinhado à direita */
+
 .top-actions {
   display: flex;
   justify-content: flex-end;
@@ -43,7 +42,7 @@ h2 {
   background: #0062cc;
 }
 
-/* Tabela igual aos outros cards */
+
 .styled-table {
   width: 100%;
   border-collapse: collapse;
@@ -61,7 +60,7 @@ h2 {
   border-bottom: 1px solid #eaeaea;
 }
 
-/* Botões de ações */
+
 .edit-btn {
   background-color: #f4a236;
   color: white;
@@ -85,7 +84,7 @@ h2 {
   background-color: #c9302c;
 }
 
-/* Quando não há dados */
+
 .no-data {
   text-align: center;
   margin-top: 20px;

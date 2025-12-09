@@ -19,7 +19,7 @@ export class HotelService {
     });
   }
 
-  // LISTAR
+  
   getHoteis(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/BuscarHoteis`, {
       headers: this.getAuthHeaders(),
@@ -28,7 +28,7 @@ export class HotelService {
     );
   }
 
-  // BUSCAR POR ID
+  
   getHotelById(id: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/BuscarHotelPorId/${id}`, {}, {
       headers: this.getAuthHeaders(),
@@ -37,28 +37,28 @@ export class HotelService {
     );
   }
 
-  // CREATE
+  
   createHotel(dto: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/CriarHotel`, dto, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  // UPDATE
+  
   updateHotel(id: string, hotel: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/AtualizarHotel/${id}`, hotel, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  // DELETE
+  
   deleteHotel(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/DeletarHotel/${id}`, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  // MAPEAMENTO DA API → ANGULAR
+  
   private mapResponse(h: any) {
     return {
       id: h.id,

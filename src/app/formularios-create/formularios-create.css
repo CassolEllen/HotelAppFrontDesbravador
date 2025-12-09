@@ -1,18 +1,18 @@
-/* Container Geral */
+
 .page-container {
   max-width: 700px;
   margin: 0 auto;
   padding: 25px;
 }
 
-/* Título */
+
 .page-title {
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-/* Inputs e Labels */
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@
   font-size: 15px;
 }
 
-/* Cards */
+
 .card {
   background: #ffffff;
   border: 1px solid #e4e4e4;
@@ -45,7 +45,7 @@
   margin-bottom: 15px;
 }
 
-/* Adicionar Pergunta */
+
 .btn-add {
   background: #3498db;
   color: white;
@@ -61,7 +61,7 @@
   background: #2980b9;
 }
 
-/* Botão pequeno */
+
 .btn-small {
   background: #2ecc71;
   padding: 6px 12px;
@@ -76,7 +76,7 @@
   background: #27ae60;
 }
 
-/* Opções */
+
 .opcoes-box {
   border-top: 1px solid #ddd;
   margin-top: 15px;
@@ -89,14 +89,14 @@
   align-items: center;
 }
 
-/* Nota */
+
 .notas-container {
   display: flex;
   gap: 20px;
   margin-top: 15px;
 }
 
-/* Botão Principal */
+
 .btn-save {
   width: 100%;
   margin-top: 20px;
@@ -114,7 +114,7 @@
   background: #219150;
 }
 
-/* Mensagens */
+
 .msg-erro {
   color: red;
   margin-top: 15px;

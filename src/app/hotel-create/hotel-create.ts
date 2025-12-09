@@ -18,14 +18,14 @@ export class HotelCreateComponent implements OnInit {
   sucesso: string | null = null;
   erro: string | null = null;
 
-  // 👇 Lista dos questionários para o dropdown
+  
   questionarios: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private hotelService: HotelService,
     private router: Router,
-    private questionarioService: FormularioService // 👈 ADICIONADO
+    private questionarioService: FormularioService 
   ) {
     this.hotelForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2)]],
@@ -38,7 +38,7 @@ export class HotelCreateComponent implements OnInit {
         idioma: ['pt-BR', Validators.required]
       }),
 
-      // 👇 Campo que vincula o questionário ao hotel
+      
       questionarioSelecionadoId: [null]
     });
   }

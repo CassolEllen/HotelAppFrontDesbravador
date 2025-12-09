@@ -1,4 +1,4 @@
-/* ===== Layout geral ===== */
+
 .login-wrapper {
   min-height: 100vh;
   padding: 32px 16px;
@@ -22,7 +22,7 @@
   border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
-/* ===== Lado esquerdo (hero) ===== */
+
 .login-hero {
   padding: 32px 32px 30px;
   color: #e5e7eb;
@@ -94,7 +94,7 @@
   margin: 10px 0 0;
 }
 
-/* ===== Card de login (lado direito) ===== */
+
 .login-card.elegant {
   background: #ffffff;
   color: #0f172a;
@@ -114,7 +114,7 @@
   color: #6b7280;
 }
 
-/* ===== Inputs ===== */
+
 .form-group {
   text-align: left;
   margin-bottom: 18px;
@@ -158,7 +158,7 @@
   box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.18);
 }
 
-/* ===== Footer do form ===== */
+
 .form-footer-row {
   display: flex;
   align-items: center;
@@ -194,7 +194,7 @@
   text-decoration: underline;
 }
 
-/* ===== Botão principal ===== */
+
 .gradient-btn {
   width: 100%;
   padding: 10px 0;
@@ -223,7 +223,7 @@
   box-shadow: none;
 }
 
-/* ===== Erro ===== */
+
 .error {
   margin-top: 12px;
   color: #b91c1c;
@@ -231,7 +231,7 @@
   font-size: 0.85rem;
 }
 
-/* ===== Responsivo ===== */
+
 @media (max-width: 800px) {
   .login-shell {
     grid-template-columns: minmax(0, 1fr);

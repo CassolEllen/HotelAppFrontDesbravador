@@ -1,24 +1,20 @@
-/* =========================================
-   VARIÁVEIS DE CORES (PALETA AZUL/MODERNA)
-   ========================================= */
+
 :root {
-  --color-primary: #1e40af;       /* Azul Escuro (Textos principais, botões) */
-  --color-secondary: #3b82f6;     /* Azul Médio (Detalhes, gráficos) */
-  --color-bg-light: #f0f4ff;      /* Fundo da página (Azulado bem leve) */
-  --color-card-bg: #ffffff;       /* Fundo Branco dos Cards */
-  --color-text-dark: #1f2937;     /* Texto Escuro (Quase preto) */
-  --color-text-light: #6b7280;    /* Texto Cinza (Legendas) */
+  --color-primary: #1e40af;       
+  --color-secondary: #3b82f6;     
+  --color-bg-light: #f0f4ff;      
+  --color-card-bg: #ffffff;       
+  --color-text-dark: #1f2937;     
+  --color-text-light: #6b7280;    
   
-  /* Cores de Status/Destaque */
+  
   --color-indigo: #4338ca;
   --color-green: #10b981;
   --color-orange: #f59e0b;
   --color-purple: #8b5cf6;
 }
 
-/* =========================================
-   RESET E ESTRUTURA BASE
-   ========================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -43,19 +39,17 @@ body {
   width: 100%;
   max-width: 1300px;
   background: var(--color-card-bg);
-  padding: 40px; /* Espaçamento interno generoso */
+  padding: 40px; 
   border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06); /* Sombra suave e luxuosa */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06); 
 }
 
-/* =========================================
-   1. CABEÇALHO (HEADER)
-   ========================================= */
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px; /* Separa o título do menu rápido */
+  margin-bottom: 30px; 
 }
 
 .title {
@@ -87,20 +81,17 @@ body {
   box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
 }
 
-/* =========================================
-   2. ACESSOS RÁPIDOS (O SEU PEDIDO)
-   ========================================= */
+
 .quick-actions-card {
   background: var(--color-card-bg);
   padding: 25px 30px;
   border-radius: 16px;
   border: 1px solid #e5e7eb;
   
-  /* --- A CORREÇÃO DE ESPAÇAMENTO ESTÁ AQUI --- */
-  margin-bottom: 50px; /* Margem grande para separar das estatísticas */
-  /* ------------------------------------------- */
+  margin-bottom: 50px; 
+  margin-bottom: 50px; 
   
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02); /* Sombra bem leve para não pesar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02); 
 }
 
 .section-title {
@@ -117,7 +108,7 @@ body {
 }
 
 .action-btn {
-  background: #f8fafc; /* Fundo levemente cinza/azul */
+  background: #f8fafc; 
   padding: 16px;
   text-align: center;
   border-radius: 12px;
@@ -130,21 +121,19 @@ body {
 }
 
 .action-btn:hover {
-  transform: translateY(-3px); /* Efeito de flutuar ao passar o mouse */
+  transform: translateY(-3px); 
   border-color: var(--color-secondary);
   color: var(--color-primary);
-  background: #eff6ff; /* Fundo azul bem clarinho no hover */
+  background: #eff6ff; 
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================================
-   3. GRID DE ESTATÍSTICAS (KPIs)
-   ========================================= */
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  margin-bottom: 40px; /* Espaço antes dos gráficos */
+  margin-bottom: 40px; 
 }
 
 .stat-card {
@@ -158,7 +147,7 @@ body {
   height: 100%;
 }
 
-/* Borda colorida sutil */
+
 .blue-light-border {
   border: 1px solid #c7d2fe;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -186,18 +175,14 @@ body {
   font-weight: 500;
 }
 
-/* Cores de texto auxiliares */
 .text-indigo { color: var(--color-indigo); }
 .text-orange { color: var(--color-orange); }
 .text-gray   { color: var(--color-text-light); }
 
-/* =========================================
-   4. GRID DE CONTEÚDO (GRÁFICOS E LISTA)
-   ========================================= */
+
 .main-content-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* Layout: 2 colunas gráficos, 2 colunas atividades */
   grid-template-areas: "chart1 chart2 activity activity";
   gap: 25px;
 }
@@ -209,12 +194,12 @@ body {
   border: 1px solid #e5e7eb;
 }
 
-/* Posicionamento via Grid Area */
+
 .chart-card:nth-child(1) { grid-area: chart1; }
 .chart-card:nth-child(2) { grid-area: chart2; }
 .activity-card:nth-child(3) { grid-area: activity; }
 
-/* --- Estilos dos Gráficos (Simulação CSS) --- */
+
 .chart-container {
   padding-top: 10px;
 }
@@ -223,7 +208,7 @@ body {
   position: relative;
   border-left: 1px solid #e5e7eb;
   border-bottom: 1px solid #e5e7eb;
-  margin-left: 30px; /* Espaço para o eixo Y */
+  margin-left: 30px; 
 }
 .chart-line {
   position: absolute;
@@ -244,23 +229,21 @@ body {
   margin-top: 15px; text-align: center;
 }
 
-/* =========================================
-   5. LISTA DE ATIVIDADES (COM FUNDO SUAVE)
-   ========================================= */
+
 .activity-list {
   list-style: none;
 }
 
 .activity-item {
   display: flex;
-  align-items: center; /* Centralizado verticalmente */
+  align-items: center; 
   padding: 12px 15px;
   border-radius: 10px;
   margin-bottom: 12px;
   transition: background 0.2s;
 }
 
-/* Cores de fundo suaves para cada item */
+
 .activity-item:nth-child(1) { background-color: rgba(16, 185, 129, 0.08); } /* Verde */
 .activity-item:nth-child(2) { background-color: rgba(59, 130, 246, 0.08); } /* Azul */
 .activity-item:nth-child(3) { background-color: rgba(245, 158, 11, 0.08); } /* Laranja */
@@ -282,9 +265,7 @@ body {
   margin: 0;
 }
 
-/* =========================================
-   6. RESPONSIVIDADE
-   ========================================= */
+
 @media (max-width: 1200px) {
   .main-content-grid {
     grid-template-columns: 1fr 1fr;
@@ -296,10 +277,10 @@ body {
 
 @media (max-width: 900px) {
   .stats-grid {
-    grid-template-columns: 1fr; /* Cards ficam um embaixo do outro */
+    grid-template-columns: 1fr; 
   }
   .button-grid {
-    grid-template-columns: 1fr 1fr; /* Botões viram 2 colunas */
+    grid-template-columns: 1fr 1fr; 
   }
 }
 

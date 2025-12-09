@@ -6,7 +6,7 @@
   padding: 40px 20px;
 }
 
-/* Título */
+
 h2 {
   font-family: "Segoe UI", sans-serif;
   margin-bottom: 10px;
@@ -60,7 +60,7 @@ h2 {
   color: #333;
 }
 
-/* Inputs e selects */
+
 .form-group input,
 .form-group select {
   padding: 10px;
@@ -78,7 +78,7 @@ h2 {
 }
 
 
-/* Botão salvar */
+
 .btn-save {
   background-color: #1976d2;
 }
@@ -100,7 +100,7 @@ h2 {
   transform: scale(1.02);
 }
 
-/* Botão voltar */
+
 .btn-back {
   background-color: #9e9e9e;
   color: white;

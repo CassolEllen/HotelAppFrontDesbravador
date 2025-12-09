@@ -2,7 +2,7 @@
   <div class="relatorio-wrapper">
     <div class="relatorio-card-modern">
 
-      <!-- Cabeçalho -->
+    
       <header class="relatorio-header">
         <div>
           <h1 class="page-title">Relatório de Satisfação</h1>
@@ -12,7 +12,7 @@
         </div>
       </header>
 
-      <!-- Resumo geral -->
+      
       <section class="summary-bar" *ngIf="respostas.length">
         <div class="summary-item">
           <span class="summary-label">Hóspedes respondentes</span>
@@ -34,7 +34,7 @@
         </div>
       </section>
 
-      <!-- Filtros -->
+      
       <section class="filters-card">
         <div class="filters-header">
           <h2 class="section-title">Filtros</h2>
@@ -71,7 +71,7 @@
         </div>
       </section>
 
-      <!-- Lista de perguntas / blocos -->
+      
       <section *ngIf="resumoPerguntas.length; else emptyState">
         <div class="pergunta-card" *ngFor="let p of resumoPerguntas">
           <div class="pergunta-header">
@@ -102,7 +102,7 @@
 
           <div class="pergunta-body">
 
-            <!-- Distribuição de opções -->
+            
             <div class="pergunta-distribuicao"
                  *ngIf="p.distribuicaoOpcoes && objectKeys(p.distribuicaoOpcoes).length">
               <h4>Distribuição das respostas</h4>
@@ -114,7 +114,7 @@
               </div>
             </div>
 
-            <!-- Respostas de texto -->
+            
             <div class="pergunta-textos"
                  *ngIf="p.exemplosTexto && p.exemplosTexto.length">
               <h4>Algumas respostas dos hóspedes</h4>
@@ -129,7 +129,7 @@
         </div>
       </section>
 
-      <!-- Estado vazio -->
+      
       <ng-template #emptyState>
         <div class="empty-state">
           <h3>Nenhuma resposta encontrada</h3>
@@ -143,7 +143,7 @@
   </div>
 </ng-container>
 
-<!-- Loading -->
+
 <ng-template #loadingTemplate>
   <div class="loading-state">
     <div class="spinner"></div>

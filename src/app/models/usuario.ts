@@ -1,10 +1,10 @@
 export interface Usuario {
   id?: string;
   nome: string;
-  email?: string; // opcional
+  email?: string; 
   contato?: {
-    email?: string; // opcional
+    email?: string; 
   };
   papel: string;
-  hotelId?: string; // opcional → evita erro TS
+  hotelId?: string; 
 }

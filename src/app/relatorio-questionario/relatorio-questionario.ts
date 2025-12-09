@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { environment } from './../../environments/environment';
 
-// 🔽 Enum + interfaces
+
 enum TipoPergunta {
   Texto = 1,
   MultiplaEscolha = 2,
@@ -46,7 +46,7 @@ interface PerguntaResumo {
   distribuicaoOpcoes?: { [opcao: string]: number };
   exemplosTexto?: string[];
 }
-// 🔼 Até aqui
+
 
 @Component({
   selector: 'app-relatorio-questionario',
@@ -65,7 +65,7 @@ export class RelatorioQuestionarioComponent implements OnInit {
   respostas: DadosResponseDto[] = [];
   resumoPerguntas: PerguntaResumo[] = [];
 
-  // filtros simples
+  
   filtroQuarto: string = '';
   filtroHospede: string = '';
 
@@ -80,7 +80,7 @@ export class RelatorioQuestionarioComponent implements OnInit {
   carregarDados() {
     this.carregando = true;
 
-    // POST /api/DadosFormulario/PegarDados
+    
     this.http
       .post<DadosResponseDto[]>(`${environment.apiUrl}/DadosFormulario/PegarDados`, {})
       .subscribe({
@@ -98,7 +98,7 @@ export class RelatorioQuestionarioComponent implements OnInit {
   }
 
   private calcularResumo() {
-    // aplica filtros básicos antes de agregar
+    
     const filtradas = this.respostas.filter(r => {
       let ok = true;
 
@@ -145,7 +145,7 @@ export class RelatorioQuestionarioComponent implements OnInit {
           exemplosTexto: []
         };
 
-        // inicia todas as opções com zero, se existirem
+        
         if (r.opcoes) {
           for (const opc of r.opcoes) {
             item.distribuicaoOpcoes[opc] = 0;
@@ -157,13 +157,13 @@ export class RelatorioQuestionarioComponent implements OnInit {
 
       item.totalRespostas++;
 
-      // --- média de nota ---
+      
       if (r.tipo === TipoPergunta.Nota && r.nota != null) {
         item.somaNotas += r.nota;
         item.qtdNotas++;
       }
 
-      // --- distribuição de opções ---
+      
       if (
         r.tipo === TipoPergunta.UnicaEscolha ||
         r.tipo === TipoPergunta.MultiplaEscolha ||
@@ -186,7 +186,7 @@ export class RelatorioQuestionarioComponent implements OnInit {
         }
       }
 
-      // exemplos de texto (até 10 por pergunta)
+      
       if (
         (r.tipo === TipoPergunta.Texto || r.tipo === TipoPergunta.Data) &&
         r.texto &&
@@ -213,7 +213,7 @@ export class RelatorioQuestionarioComponent implements OnInit {
     this.calcularResumo();
   }
 
-  // 🔽 getters usados no HTML (cabeçalho de resumo)
+  
 
   get totalPerguntas(): number {
     return this.resumoPerguntas.length;

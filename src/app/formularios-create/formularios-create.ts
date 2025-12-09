@@ -67,15 +67,14 @@ export class FormulariosCreate {
       return;
     }
 
-    let payload = structuredClone(this.form.value); //  ✅ evita modificar o form original
-
+    let payload = structuredClone(this.form.value); 
     const perguntas = [];
 
     for (let p of payload.perguntas) {
 
       p.tipoPergunta = Number(p.tipoPergunta);
 
-      // 🔥 TIPOS QUE PRECISAM DE OPÇÕES
+      
       if ([2, 4, 5].includes(p.tipoPergunta)) {
         if (!p.opcoes || p.opcoes.length === 0) {
           this.erro = "Perguntas de múltipla escolha precisam de opções.";
@@ -85,7 +84,6 @@ export class FormulariosCreate {
         delete p.opcoes;
       }
 
-      // 🔥 VALIDAÇÃO DE NOTA
       if (p.tipoPergunta === 3) {
         if (p.notaMin == null || p.notaMax == null) {
           this.erro = "Preencha Nota Mínima e Máxima.";
@@ -100,7 +98,7 @@ export class FormulariosCreate {
         delete p.notaMax;
       }
 
-      perguntas.push(p); //  ✅ não insere null
+      perguntas.push(p); 
     }
 
     payload.perguntas = perguntas;

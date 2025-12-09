@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule, Location } from '@angular/common'; // <-- Importar Location
+import { CommonModule, Location } from '@angular/common'; 
 import { HospedeService } from '../services/hospede-service';
 
 @Component({
@@ -22,7 +22,7 @@ export class HospedesEditComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private service: HospedeService,
-    private location: Location // <-- INJETAR LOCATION
+    private location: Location 
   ) {}
 
   ngOnInit(): void {
@@ -43,16 +43,16 @@ export class HospedesEditComponent implements OnInit {
     this.carregarHospede();
   }
   
-  // NOVO MÉTODO: VOLTAR COM PROTEÇÃO
+  
   voltar(): void {
-    // Verifica se o formulário foi modificado
+    
     if (this.form.dirty) {
       const confirmacao = confirm('Você tem alterações não salvas. Deseja realmente voltar e perder as alterações?');
       if (confirmacao) {
         this.location.back();
       }
     } else {
-      // Se não há alterações, volta normalmente
+      
       this.location.back();
     }
   }
@@ -62,7 +62,7 @@ export class HospedesEditComponent implements OnInit {
       next: (res: any) => {
         this.form.patchValue(res);
         this.loading = false;
-        // Importante: reset() marca o form como pristine (não sujo) após o carregamento
+        
         this.form.markAsPristine(); 
       },
       error: () => {
@@ -78,7 +78,7 @@ export class HospedesEditComponent implements OnInit {
     this.service.atualizar(this.id, this.form.value).subscribe({
       next: () => {
         alert("Dados atualizados com sucesso!");
-        // Marca o form como não sujo após salvar com sucesso
+        
         this.form.markAsPristine(); 
       },
       error: () => {

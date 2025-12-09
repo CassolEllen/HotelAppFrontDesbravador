@@ -1,26 +1,25 @@
 body {
-    /* CENTRALIZAÇÃO PRINCIPAL */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte profissional e legível */
-    background-color: #f4f7f6; /* Cor de fundo suave */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #f4f7f6; 
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: flex-start; /* Alinha no topo, permitindo scroll */
+    justify-content: center; 
+    align-items: flex-start; 
     min-height: 100vh;
     margin: 0;
-    padding: 40px 20px; /* Adiciona padding para evitar que o card toque nas bordas */
+    padding: 40px 20px; 
 }
 
 .container {
     width: 100%;
-    max-width: 650px; /* Largura máxima controlada */
+    max-width: 650px; 
 }
 
 .card {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
-    border: 1px solid #e0e0e0; /* Borda sutil */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #e0e0e0; 
 }
 
 .header {
@@ -55,14 +54,13 @@ body {
     margin-bottom: 15px;
 }
 
-/* 📌 ESTRUTURA VERTICAL PARA MÚLTIPLA E ÚNICA ESCOLHA */
 .checkbox-group, .radio-group {
     display: flex;
     flex-direction: column; 
     gap: 5px; 
 }
 
-/* Estilo para as opções (labels) */
+
 .checkbox-label, .radio-label {
     display: flex;
     align-items: center;
@@ -80,14 +78,13 @@ body {
     border-color: #e9ecef;
 }
 
-/* Estilização dos inputs (Checkbox e Radio) */
 .checkbox-label input[type="checkbox"],
 .radio-label input[type="radio"] {
     appearance: none;
     width: 18px;
     height: 18px;
     border: 2px solid #ced4da; 
-    border-radius: 50%; /* Redondo para Rádio */
+    border-radius: 50%; 
     margin-right: 12px;
     position: relative;
     cursor: pointer;
@@ -96,17 +93,17 @@ body {
 }
 
 .checkbox-label input[type="checkbox"] {
-    border-radius: 4px; /* Quadrado para Checkbox */
+    border-radius: 4px; 
 }
 
-/* Checkbox e Radio marcados */
+
 .checkbox-label input[type="checkbox"]:checked,
 .radio-label input[type="radio"]:checked {
     background-color: #007bff;
     border-color: #007bff;
 }
 
-/* Marcas de seleção */
+
 .checkbox-label input[type="checkbox"]:checked::after {
     content: '✓';
     color: white;
@@ -129,7 +126,6 @@ body {
     transform: translate(-50%, -50%);
 }
 
-/* Estilização para Campo de Texto (Textarea) */
 textarea {
     width: 100%;
     padding: 12px;
@@ -151,7 +147,6 @@ input[type="date"]:focus,
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* Estilização para Campo de Nota (Rating) */
 .rating-input {
     display: flex;
     justify-content: space-between;
@@ -166,7 +161,7 @@ input[type="date"]:focus,
 }
 
 .rating-input input[type="number"] {
-    width: 70px; /* Aumenta um pouco para a nota */
+    width: 70px; 
     padding: 8px;
     text-align: center;
     border: 1px solid #ced4da;
@@ -175,7 +170,6 @@ input[type="date"]:focus,
     color: #343a40;
 }
 
-/* Estilização para Campo de Data (Date) */
 input[type="date"] {
     width: 100%;
     padding: 12px;
@@ -186,7 +180,6 @@ input[type="date"] {
     box-sizing: border-box;
 }
 
-/* Estilização do botão */
 .btn-primary {
     width: 100%;
     padding: 14px;
@@ -213,5 +206,5 @@ input[type="date"] {
     border: 0;
     height: 1px;
     background-color: #e9ecef;
-    margin: 30px 0; /* Mais espaço para separar as perguntas */
+    margin: 30px 0; 
 }

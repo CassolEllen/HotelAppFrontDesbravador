@@ -16,7 +16,7 @@
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
 }
 
-/* Header */
+
 
 .relatorio-header {
   display: flex;
@@ -39,7 +39,7 @@
   color: #64748b;
 }
 
-/* Summary bar */
+
 
 .summary-bar {
   display: grid;
@@ -74,7 +74,7 @@
   color: #2563eb;
 }
 
-/* Filters */
+
 
 .filters-card {
   border-radius: 14px;
@@ -152,7 +152,7 @@
   box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.15);
 }
 
-/* Cards de pergunta */
+
 
 .pergunta-card {
   border-radius: 16px;
@@ -279,7 +279,7 @@
   border-bottom: none;
 }
 
-/* Empty state & loading */
+
 
 .empty-state {
   text-align: center;
@@ -318,7 +318,7 @@
   }
 }
 
-/* Responsivo */
+
 
 @media (max-width: 900px) {
   .summary-bar {
