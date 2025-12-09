@@ -1,56 +1,142 @@
 /* ===== Layout geral ===== */
 .login-wrapper {
+  min-height: 100vh;
+  padding: 32px 16px;
+  background: radial-gradient(circle at top left, #1e293b 0, #020617 40%, #020617 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding: 20px;
-  background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+  box-sizing: border-box;
 }
 
-/* ===== Card ===== */
-.login-card.elegant {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px);
-  border-radius: 20px;
-  padding: 40px 35px;
-  width: 380px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  color: #fff;
-  animation: fadeIn 0.7s ease;
+.login-shell {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 0;
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
-/* ===== Títulos ===== */
-.app-name {
-  font-size: 32px;
+/* ===== Lado esquerdo (hero) ===== */
+.login-hero {
+  padding: 32px 32px 30px;
+  color: #e5e7eb;
+  position: relative;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%),
+              radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.26), transparent 55%);
+}
+
+.logo-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.logo-mark {
+  font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
 }
 
-.subtitle {
-  color: #d8e3e7;
-  margin-bottom: 25px;
+.hero-title {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.hero-subtitle {
+  margin: 6px 0 18px;
+  font-size: 0.98rem;
+  color: #cbd5f5;
+}
+
+.hero-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-highlights li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #e5e7eb;
+}
+
+.hero-highlights .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+}
+
+.hero-footnote {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin: 10px 0 0;
+}
+
+/* ===== Card de login (lado direito) ===== */
+.login-card.elegant {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 32px 30px 28px;
+  text-align: left;
+}
+
+.card-title {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.card-subtitle {
+  margin: 0 0 20px;
+  font-size: 0.9rem;
+  color: #6b7280;
 }
 
 /* ===== Inputs ===== */
 .form-group {
   text-align: left;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
-.label {
-  font-weight: 600;
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #4b5563;
 }
 
 .input-wrapper {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin-top: 4px;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-top: 5px;
+  border: 1px solid #e5e7eb;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 .input-wrapper input {
@@ -58,73 +144,114 @@
   border: none;
   outline: none;
   flex: 1;
-  color: #fff;
-  font-size: 15px;
+  color: #111827;
+  font-size: 0.9rem;
 }
 
 .input-wrapper input::placeholder {
-  color: #d9d9d9;
+  color: #9ca3af;
 }
 
-/* ===== Ícone (mesmo não sendo material-icons real) ===== */
-.icon {
-  font-size: 14px;
-  color: #e0e0e0;
-  white-space: nowrap;
+.input-wrapper:focus-within {
+  border-color: #4f46e5;
+  background-color: #f5f3ff;
+  box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.18);
 }
 
-/* ===== Botão ===== */
-.gradient-btn {
-  width: 100%;
-  padding: 12px 0;
-  margin-top: 10px;
+/* ===== Footer do form ===== */
+.form-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.remember-me input {
+  width: 14px;
+  height: 14px;
+}
+
+.link-button {
   border: none;
-  border-radius: 12px;
-  font-size: 17px;
-  font-weight: 600;
-  color: white;
+  background: transparent;
+  font-size: 0.8rem;
+  color: #4f46e5;
   cursor: pointer;
-  background: linear-gradient(135deg, #4cc9f0, #4361ee, #3a0ca3);
-  transition: transform 0.15s ease, opacity 0.2s ease;
+  padding: 0;
 }
 
-.gradient-btn:hover:not([disabled]) {
-  transform: scale(1.04);
-  opacity: 0.95;
-}
-
-.gradient-btn[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* ===== Outros textos ===== */
-.forgot {
-  margin-top: 12px;
-  font-size: 14px;
-  opacity: 0.85;
-  cursor: pointer;
-}
-
-.forgot:hover {
-  opacity: 1;
+.link-button:hover {
   text-decoration: underline;
 }
 
-.error {
-  margin-top: 15px;
-  color: #ff8787;
+/* ===== Botão principal ===== */
+.gradient-btn {
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 4px;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.98rem;
   font-weight: 600;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6, #06b6d4);
+  background-size: 180% 180%;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-position 0.25s ease, opacity 0.2s ease;
 }
 
-/* ===== Animação suave ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
+.gradient-btn:hover:not([disabled]) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.48);
+  background-position: 20% 0;
+  opacity: 0.97;
+}
+
+.gradient-btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===== Erro ===== */
+.error {
+  margin-top: 12px;
+  color: #b91c1c;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 800px) {
+  .login-shell {
+    grid-template-columns: minmax(0, 1fr);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .login-hero {
+    display: none;
+  }
+
+  .login-card.elegant {
+    padding: 26px 22px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-wrapper {
+    padding: 16px;
+  }
+
+  .login-card.elegant {
+    border-radius: 18px;
   }
 }
