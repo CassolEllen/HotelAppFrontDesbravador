@@ -1,0 +1,152 @@
+<ng-container *ngIf="!carregando; else loadingTemplate">
+  <div class="relatorio-wrapper">
+    <div class="relatorio-card-modern">
+
+      <!-- Cabeçalho -->
+      <header class="relatorio-header">
+        <div>
+          <h1 class="page-title">Relatório de Satisfação</h1>
+          <p class="page-subtitle">
+            Acompanhe as respostas dos hóspedes e o desempenho das suas perguntas.
+          </p>
+        </div>
+      </header>
+
+      <!-- Resumo geral -->
+      <section class="summary-bar" *ngIf="respostas.length">
+        <div class="summary-item">
+          <span class="summary-label">Hóspedes respondentes</span>
+          <span class="summary-value">{{ totalHospedesRespondentes }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Total de respostas</span>
+          <span class="summary-value">{{ totalRespostas }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Perguntas avaliadas</span>
+          <span class="summary-value">{{ totalPerguntas }}</span>
+        </div>
+        <div class="summary-item" *ngIf="notaMediaGeral !== null">
+          <span class="summary-label">Nota média geral</span>
+          <span class="summary-value highlight">
+            {{ notaMediaGeral | number:'1.1-1' }}
+          </span>
+        </div>
+      </section>
+
+      <!-- Filtros -->
+      <section class="filters-card">
+        <div class="filters-header">
+          <h2 class="section-title">Filtros</h2>
+          <button class="clear-filters-btn"
+                  type="button"
+                  (click)="filtroQuarto=''; filtroHospede=''; aplicarFiltros()"
+                  [disabled]="!filtroQuarto && !filtroHospede">
+            Limpar filtros
+          </button>
+        </div>
+
+        <div class="filters-grid">
+          <div class="form-field">
+            <label for="filtroQuarto">Quarto</label>
+            <input
+              id="filtroQuarto"
+              type="text"
+              [(ngModel)]="filtroQuarto"
+              (ngModelChange)="aplicarFiltros()"
+              placeholder="Ex: 101, 204..."
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="filtroHospede">Hóspede</label>
+            <input
+              id="filtroHospede"
+              type="text"
+              [(ngModel)]="filtroHospede"
+              (ngModelChange)="aplicarFiltros()"
+              placeholder="Nome do hóspede"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Lista de perguntas / blocos -->
+      <section *ngIf="resumoPerguntas.length; else emptyState">
+        <div class="pergunta-card" *ngFor="let p of resumoPerguntas">
+          <div class="pergunta-header">
+            <div>
+              <h3 class="pergunta-title">{{ p.pergunta }}</h3>
+              <p class="pergunta-meta">
+                {{ p.totalRespostas }} {{ p.totalRespostas === 1 ? 'resposta' : 'respostas' }}
+                <span class="tag" *ngIf="p.tipo === TipoPergunta.Nota">Pergunta de nota</span>
+                <span class="tag" *ngIf="p.tipo === TipoPergunta.Texto">Resposta aberta</span>
+                <span class="tag" *ngIf="p.tipo === TipoPergunta.UnicaEscolha">Escolha única</span>
+                <span class="tag" *ngIf="p.tipo === TipoPergunta.MultiplaEscolha || p.tipo === TipoPergunta.Checkbox">
+                  Múltipla escolha
+                </span>
+              </p>
+            </div>
+
+            <div class="pergunta-score"
+                 *ngIf="p.tipo === TipoPergunta.Nota && p.notaMedia !== null">
+              <span class="score-label">Média</span>
+              <span class="score-value">
+                {{ p.notaMedia | number:'1.1-1' }}
+              </span>
+              <span class="score-range" *ngIf="p.notaMin && p.notaMax">
+                ({{ p.notaMin }} a {{ p.notaMax }})
+              </span>
+            </div>
+          </div>
+
+          <div class="pergunta-body">
+
+            <!-- Distribuição de opções -->
+            <div class="pergunta-distribuicao"
+                 *ngIf="p.distribuicaoOpcoes && objectKeys(p.distribuicaoOpcoes).length">
+              <h4>Distribuição das respostas</h4>
+              <div class="chips-row">
+                <div class="chip" *ngFor="let opc of objectKeys(p.distribuicaoOpcoes)">
+                  <span class="chip-label">{{ opc }}</span>
+                  <span class="chip-value">{{ p.distribuicaoOpcoes[opc] }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Respostas de texto -->
+            <div class="pergunta-textos"
+                 *ngIf="p.exemplosTexto && p.exemplosTexto.length">
+              <h4>Algumas respostas dos hóspedes</h4>
+              <ul>
+                <li *ngFor="let t of p.exemplosTexto">
+                  “{{ t }}”
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Estado vazio -->
+      <ng-template #emptyState>
+        <div class="empty-state">
+          <h3>Nenhuma resposta encontrada</h3>
+          <p>
+            Ajuste os filtros ou aguarde mais hóspedes responderem os formulários.
+          </p>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</ng-container>
+
+<!-- Loading -->
+<ng-template #loadingTemplate>
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Carregando relatório...</p>
+  </div>
+</ng-template>

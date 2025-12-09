@@ -13,33 +13,37 @@ import { HotelEditComponent } from './hotel-edit/hotel-edit';
 import { HospedesEditComponent } from './hospedes-edit/hospedes-edit';
 import { HospedeCreateComponent } from './hospedes-create/hospedes-create';
 import { HospedesListComponent } from './hospedes-list/hospedes-list';
+import { RelatorioQuestionarioComponent } from './relatorio-questionario/relatorio-questionario';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
 
   { path: 'hoteis', component: HotelListComponent, canActivate: [authGuard] },
   { path: 'hoteis/novo', component: HotelCreateComponent, canActivate: [authGuard] },
   { path: 'hoteis/editar/:id', component: HotelEditComponent, canActivate: [authGuard] },
 
-  { path: 'usuarios', component: UsuarioList },
-  { path: 'usuarios/novo', component: UsuarioFormComponent },
-  { path: 'usuarios/editar/:id', component: UsuarioFormComponent },
+  { path: 'usuarios', component: UsuarioList, canActivate: [authGuard] },
+  { path: 'usuarios/novo', component: UsuarioFormComponent, canActivate: [authGuard] },
+  { path: 'usuarios/editar/:id', component: UsuarioFormComponent, canActivate: [authGuard] },
 
-  { path: 'formularios', component: FormulariosListComponent },
-  { path: 'formularios/novo', component: FormulariosCreate },
-  { path: 'formularios/editar/:id', component: FormulariosEditComponent },
+  { path: 'formularios', component: FormulariosListComponent, canActivate: [authGuard] },
+  { path: 'formularios/novo', component: FormulariosCreate, canActivate: [authGuard] },
+  { path: 'formularios/editar/:id', component: FormulariosEditComponent, canActivate: [authGuard] },
 
-  { path: 'hospedes', component: HospedesListComponent },
-  { path: 'hospedes/novo', component: HospedeCreateComponent },
-  { path: 'hospedes/editar/:id', component: HospedesEditComponent },
+  { path: 'hospedes', component: HospedesListComponent, canActivate: [authGuard] },
+  { path: 'hospedes/novo', component: HospedeCreateComponent, canActivate: [authGuard] },
+  { path: 'hospedes/editar/:id', component: HospedesEditComponent, canActivate: [authGuard] },
+
+
+  { path: 'relatorios', component: RelatorioQuestionarioComponent, canActivate: [authGuard] },
 
   {
-  path: 'envioFormulario',
-  loadComponent: () =>
-    import('./envio-formulario/envio-formulario')
-      .then(m => m.EnvioFormularioComponent)
-}
-
+    path: 'envioFormulario',
+    loadComponent: () =>
+      import('./envio-formulario/envio-formulario')
+        .then(m => m.EnvioFormularioComponent)
+  }
 ];
